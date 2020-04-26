@@ -9,7 +9,8 @@
   "author": "RunHannah",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
