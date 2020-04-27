@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');
+const cors = require('cors');
+// const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
+
+app.use(cors());
+app.use(bodyParser.json());
 
 const uri = require('./config/keys').mongoURI;
 
