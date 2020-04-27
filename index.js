@@ -1,19 +1,31 @@
 const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 const uri = require('./config/keys').mongoURI;
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+db.once('open', (_) => {
+  console.log('Database connected:', db);
 });
 
-client.connect((err, client) => {
-  if (err) throw err;
-  const db = client.db('finance-tracker');
-  console.log('connected to database');
+db.on('error', (err) => {
+  console.error('connection error:', err);
 });
+
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// client.connect((err, client) => {
+//   if (err) throw err;
+//   const db = client.db('finance-tracker');
+//   console.log('connected to database');
+// });
 
 app.get('/', (req, res) => {
   res.send('Hello World');
