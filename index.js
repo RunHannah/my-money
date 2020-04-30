@@ -7,12 +7,13 @@ const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/api', require('./routes/api'));
 
 const uri = require('./config/keys').mongoURI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
 const db = mongoose.connection;
+
 db.once('open', (_) => {
   console.log('Database connected:', db);
 });
@@ -32,9 +33,9 @@ db.on('error', (err) => {
 //   console.log('connected to database');
 // });
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World');
+// });
 
 const port = process.env.PORT || 3000;
 
