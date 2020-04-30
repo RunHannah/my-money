@@ -5,22 +5,17 @@ const cors = require('cors');
 // const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use('/api', require('./routes/api'));
-
 const uri = require('./config/keys').mongoURI;
-
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
-db.once('open', (_) => {
-  console.log('Database connected:', db);
-});
+// db.once('open', (_) => {
+//   console.log('Database connected:', db);
+// });
 
-db.on('error', (err) => {
-  console.error('connection error:', err);
-});
+// db.on('error', (err) => {
+//   console.error('connection error:', err);
+// });
 
 // const client = new MongoClient(uri, {
 //   useNewUrlParser: true,
@@ -36,6 +31,10 @@ db.on('error', (err) => {
 // app.get('/', (req, res) => {
 //   res.send('Hello World');
 // });
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/api', require('./routes/api'));
 
 const port = process.env.PORT || 3000;
 
