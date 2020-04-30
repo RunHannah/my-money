@@ -14,6 +14,10 @@ const TransactionSchema = new Schema({
     type: String,
     default: 'Dining',
   },
+  amount: {
+    type: Number,
+    required: [true, 'expense field is required'],
+  },
 });
 
 module.exports = mongoose.model('Transaction', TransactionSchema);
