@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
+const seedTransactions = require('./seedTransactions.json');
 
 const uri = require('./config/keys').mongoURI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -15,11 +16,25 @@ db.once('open', async (_) => {
   if (eraseDatabaseOnSync) {
     await Promise.all([Transaction.deleteMany({})]);
   }
+  createTransactions();
 });
 
 // db.on('error', (err) => {
 //   console.error('connection error:', err);
 // });
+
+const createTransactions = () => {
+  seedTransactions.map(async (obj) => {
+    let transaction = new Transaction({
+      transactionName: `${obj.transactionName}`,
+      date: `${obj.date}`,
+      category: `${obj.category}`,
+      amount: `${obj.amount}`,
+    });
+
+    await transaction.save();
+  });
+};
 
 app.use(bodyParser.json());
 app.use(cors());
