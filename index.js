@@ -40,6 +40,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// import routes
+const authRoute = require('./routes/auth');
+
+app.use('/api/user', authRoute);
 app.use('/api', require('./routes/api'));
 
 // error handling middleware
