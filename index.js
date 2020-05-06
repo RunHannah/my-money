@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
 const seedTransactions = require('./seedTransactions.json');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const uri = require('./config/keys').mongoURI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
