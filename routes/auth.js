@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const { registerValidation } = require('../validations');
+const { registerValidation, loginValidation } = require('../validations');
 
 router.post('/register', async (req, res, next) => {
   const { error } = registerValidation(req.body);
@@ -27,6 +27,21 @@ router.post('/register', async (req, res, next) => {
   await user.save().then((user) => {
     res.status(200).json({ success: true, data: user._id });
   });
+});
+
+router.post('/login', async (req, res, next) => {
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  // check email exists
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send('Invalid email.');
+
+  // check pw
+  const validPw = await bcrypt.compare(req.body.password, user.password);
+  if (!validPw) return res.status(400).send('Invalid login credentials');
+
+  res.send('Success!');
 });
 
 module.exports = router;
