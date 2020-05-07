@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Transaction = require('../models/transaction');
+const verify = require('../middleware/verifyToken');
 
-// all transcations
+// all transactions
 router.get('/transactions', (req, res, next) => {
   Transaction.find({}).then((transactions) => {
     res.status(200).json({ success: true, data: transactions });
@@ -16,7 +17,7 @@ router.get('/transactions/:id', (req, res, next) => {
   });
 });
 
-router.post('/transactions', (req, res, next) => {
+router.post('/transactions', verify, (req, res, next) => {
   const transaction = new Transaction(req.body);
   transaction.save().then((transaction) => {
     res.status(200).json({ success: true, data: transaction });
