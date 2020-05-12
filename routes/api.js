@@ -24,7 +24,7 @@ router.post('/transactions', verify, (req, res, next) => {
   });
 });
 
-router.put('/transactions/:id', (req, res, next) => {
+router.put('/transactions/:id', verify, (req, res, next) => {
   Transaction.findByIdAndUpdate({ _id: req.params.id }, req.body).then(() => {
     Transaction.findOne({ _id: req.params.id }).then((transaction) => {
       res.status(200).json({ success: true, data: transaction });
@@ -32,7 +32,7 @@ router.put('/transactions/:id', (req, res, next) => {
   });
 });
 
-router.delete('/transactions/:id', (req, res, next) => {
+router.delete('/transactions/:id', verify, (req, res, next) => {
   Transaction.findByIdAndDelete({ _id: req.params.id }).then((transaction) => {
     res.status(200).json({ success: true, data: transaction });
   });
