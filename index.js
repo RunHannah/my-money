@@ -23,9 +23,9 @@ db.once('open', async (_) => {
   createTransactions();
 });
 
-// db.on('error', (err) => {
-//   console.error('connection error:', err);
-// });
+db.on('error', (err) => {
+  console.error('connection error:', err);
+});
 
 const createTransactions = () => {
   seedTransactions.map(async (obj) => {
@@ -46,9 +46,10 @@ app.use(cors());
 
 // import routes
 const authRoute = require('./routes/auth');
+const apiRoute = require('./routes/api');
 
 app.use('/api/user', authRoute);
-app.use('/api', require('./routes/api'));
+app.use('/api', apiRoute);
 
 // error handling middleware
 app.use(function (err, req, res, next) {
