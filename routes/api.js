@@ -17,6 +17,13 @@ router.get('/transactions/:id', (req, res, next) => {
   });
 });
 
+// find all transactions by user
+router.get('/transactions/user/:userId', verify, (req, res, next) => {
+  Transaction.find({ userId: req.params.userId }).then((transactions) => {
+    res.status(200).json({ success: true, data: transactions });
+  });
+});
+
 router.post('/transactions', verify, (req, res, next) => {
   const transaction = new Transaction(req.body);
   transaction.save().then((transaction) => {
