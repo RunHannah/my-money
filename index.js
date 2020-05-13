@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
@@ -52,10 +52,10 @@ app.use('/api/user', authRoute);
 app.use('/api', apiRoute);
 
 // error handling middleware
-app.use(function (err, req, res, next) {
-  console.log(err);
-  res.status(422).send({ error: err.message });
-});
+// app.use(function (err, req, res, next) {
+//   console.log(err);
+//   res.status(422).send({ error: err.message });
+// });
 
 const port = process.env.PORT || 3000;
 
