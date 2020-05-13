@@ -220,5 +220,65 @@
     "date": "8/13/20",
     "category": "Merchandise",
     "amount": "29.99"
+  },
+  {
+    "transactionName": "Bookstore",
+    "date": "10/1/20",
+    "category": "Merchandise",
+    "amount": "9.99"
+  },
+  {
+    "transactionName": "Daycare",
+    "date": "1/1/20",
+    "category": "other services",
+    "amount": "400"
+  },
+  {
+    "transactionName": "Senior Living",
+    "date": "11/11/20",
+    "category": "other services",
+    "amount": "5000"
+  },
+  {
+    "transactionName": "76",
+    "date": "9/19/20",
+    "category": "gas",
+    "amount": "20"
+  },
+  {
+    "transactionName": "Daycare",
+    "date": "3/1/20",
+    "category": "other services",
+    "amount": "400"
+  },
+  {
+    "transactionName": "Senior Living",
+    "date": "6/11/20",
+    "category": "other services",
+    "amount": "5000"
+  },
+  {
+    "transactionName": "76",
+    "date": "8/19/20",
+    "category": "gas",
+    "amount": "20"
+  },
+  {
+    "transactionName": "Daycare",
+    "date": "1/1/20",
+    "category": "other services",
+    "amount": "400"
+  },
+  {
+    "transactionName": "Vons",
+    "date": "6/11/20",
+    "category": "Food",
+    "amount": "50"
+  },
+  {
+    "transactionName": "76",
+    "date": "1/19/20",
+    "category": "gas",
+    "amount": "20"
   }
 ]
