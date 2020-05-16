@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
@@ -40,14 +41,24 @@ const createTransactions = () => {
   });
 };
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-
 // import routes
 const authRoute = require('./routes/auth');
 const apiRoute = require('./routes/api');
 
+// Body parser
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// Set security headers
+app.use(helmet());
+
+// Prevent XSS attacks
+app.use(xss());
+
+// Enable CORS
+app.use(cors());
+
+// Mount routers
 app.use('/api/user', authRoute);
 app.use('/api', apiRoute);
 
