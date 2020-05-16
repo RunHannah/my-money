@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const xss = require('xss-clean');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
@@ -48,6 +50,9 @@ const apiRoute = require('./routes/api');
 // Body parser
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
+
+// Sanitize data
+app.use(mongoSanitize());
 
 // Set security headers
 app.use(helmet());
