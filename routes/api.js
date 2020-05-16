@@ -5,44 +5,78 @@ const verify = require('../middleware/verifyToken');
 
 // all transactions
 router.get('/transactions', async (req, res, next) => {
-  const transactions = await Transaction.find({});
-  res.status(200).json({ success: true, data: transactions });
+  await Transaction.find({})
+    .then((transactions) => {
+      if (transactions.length > 0)
+        return res.status(200).json({ success: true, data: transactions });
+
+      if (transactions.length === 0)
+        return res.status(200).json({
+          success: true,
+          data: 'There are no transactions',
+        });
+    })
+    .catch(next);
 });
 
 // find single transaction
 router.get('/transactions/:id', async (req, res, next) => {
-  const transaction = await Transaction.findById({ _id: req.params.id });
-  res.status(200).json({ success: true, data: transaction });
+  await Transaction.findById({ _id: req.params.id })
+    .then((transaction) => {
+      res.status(200).json({ success: true, data: transaction });
+    })
+    .catch(next);
 });
 
 // find all transactions by user
 router.get('/transactions/user/:userId', verify, async (req, res, next) => {
-  const transactions = await Transaction.find({ userId: req.params.userId });
-  res.status(200).json({ success: true, data: transactions });
+  await Transaction.find({ userId: req.params.userId }).then((transactions) => {
+    if (transactions.length > 0)
+      return res.status(200).json({ success: true, data: transactions });
+  });
+  if (transactions.length === 0)
+    return res
+      .status(200)
+      .json({
+        success: true,
+        data: 'User has no transactions',
+      })
+      .catch(next);
 });
 
 router.post('/transactions', verify, async (req, res, next) => {
   const transaction = new Transaction(req.body);
-  const savedTransaction = await transaction.save();
-  res.status(200).json({ success: true, data: savedTransaction });
+  await transaction
+    .save()
+    .then((savedTransaction) => {
+      res.status(200).json({ success: true, data: savedTransaction });
+    })
+    .catch(next);
 });
 
 router.put('/transactions/:id', verify, async (req, res, next) => {
-  const updated = await Transaction.findByIdAndUpdate(
-    { _id: req.params.id },
-    req.body
-  );
-  if (updated) {
-    const transaction = await Transaction.findOne({ _id: req.params.id });
-    res.status(200).json({ success: true, data: transaction });
-  }
+  await Transaction.findByIdAndUpdate({ _id: req.params.id }, req.body)
+    .then(async (updated) => {
+      if (updated) {
+        await Transaction.findOne({ _id: req.params.id }).then(
+          (transaction) => {
+            res.status(200).json({ success: true, data: transaction });
+          }
+        );
+      }
+    })
+    .catch(next);
 });
 
 router.delete('/transactions/:id', verify, async (req, res, next) => {
-  const transaction = await Transaction.findByIdAndDelete({
+  await Transaction.findByIdAndDelete({
     _id: req.params.id,
-  });
-  res.status(200).json({ success: true, data: transaction });
+  })
+    .then((transaction) => {
+      console.log('transaction', transaction);
+      res.status(200).json({ success: true, data: transaction });
+    })
+    .catch(next);
 });
 
 module.exports = router;

@@ -14,7 +14,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const uri = require('./config/keys').mongoURI;
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 const db = mongoose.connection;
 
 db.once('open', async (_) => {
@@ -68,10 +72,10 @@ app.use('/api/user', authRoute);
 app.use('/api', apiRoute);
 
 // error handling middleware
-// app.use(function (err, req, res, next) {
-//   console.log(err);
-//   res.status(422).send({ error: err.message });
-// });
+app.use(function (err, req, res, next) {
+  console.log(err);
+  res.status(422).send({ error: err.message });
+});
 
 const port = process.env.PORT || 3000;
 
