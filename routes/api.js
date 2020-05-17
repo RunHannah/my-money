@@ -82,7 +82,6 @@ router.delete('/transactions/:id', verify, async (req, res, next) => {
     _id: req.params.id,
   })
     .then((transaction) => {
-      console.log('transaction', transaction);
       res.status(200).json({ success: true, data: transaction });
     })
     .catch(next);
