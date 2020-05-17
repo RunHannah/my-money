@@ -49,7 +49,7 @@ const createTransactions = () => {
 
 // import routes
 const authRoute = require('./routes/auth');
-const apiRoute = require('./routes/api');
+const apiRoute = require('./routes/transactions');
 
 // Body parser
 app.use(express.json());
