@@ -31,15 +31,17 @@ router.get('/transactions/:id', async (req, res, next) => {
 
 // find all transactions by user
 router.get('/transactions/user/:userId', verify, async (req, res, next) => {
-  await Transaction.find({ userId: req.params.userId })
-    .then((transactions) => {
-      if (transactions.length > 0)
-        return res.status(200).json({ success: true, data: transactions });
-      if (transactions.length === 0)
-        return res.status(200).json({
-          success: true,
-          data: 'User has no transactions',
-        });
+  await User.findOne({ _id: req.params.userId })
+    .populate('transactions')
+    .then((result) => {
+      if (result.transactions.length > 0)
+        return res
+          .status(200)
+          .json({ success: true, data: result.transactions });
+      if (result.transactions.length === 0)
+        return res
+          .status(200)
+          .json({ success: true, message: 'User has no transactions' });
     })
     .catch(next);
 });
