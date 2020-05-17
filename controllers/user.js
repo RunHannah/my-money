@@ -44,3 +44,11 @@ exports.userLogin = async (req, res, next) => {
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
   res.header('auth-token', token).json({ token, id: user._id });
 };
+
+exports.deleteUser = async (req, res, next) => {
+  await User.remove({ _id: req.params.userId })
+    .then((result) => {
+      res.status(200).json({ message: 'User deleted' });
+    })
+    .catch(next);
+};
