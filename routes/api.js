@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Transaction = require('../models/transaction');
+const User = require('../models/user');
 const verify = require('../middleware/verifyToken');
 
 // all transactions
@@ -30,26 +31,34 @@ router.get('/transactions/:id', async (req, res, next) => {
 
 // find all transactions by user
 router.get('/transactions/user/:userId', verify, async (req, res, next) => {
-  await Transaction.find({ userId: req.params.userId }).then((transactions) => {
-    if (transactions.length > 0)
-      return res.status(200).json({ success: true, data: transactions });
-  });
-  if (transactions.length === 0)
-    return res
-      .status(200)
-      .json({
-        success: true,
-        data: 'User has no transactions',
-      })
-      .catch(next);
+  await Transaction.find({ userId: req.params.userId })
+    .then((transactions) => {
+      if (transactions.length > 0)
+        return res.status(200).json({ success: true, data: transactions });
+      if (transactions.length === 0)
+        return res.status(200).json({
+          success: true,
+          data: 'User has no transactions',
+        });
+    })
+    .catch(next);
 });
 
 router.post('/transactions', verify, async (req, res, next) => {
   const transaction = new Transaction(req.body);
   await transaction
     .save()
-    .then((savedTransaction) => {
-      res.status(200).json({ success: true, data: savedTransaction });
+    .then((transaction) => {
+      User.findById({ _id: transaction.userId }, (err, user) => {
+        if (user) {
+          user.transactions.push(transaction);
+          user.save();
+          res.json({ message: 'Transaction created!' });
+        }
+        if (!user) {
+          next(err);
+        }
+      });
     })
     .catch(next);
 });

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// mongoose.models = {};
+
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -24,6 +26,14 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  transactions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Transaction',
+    },
+  ],
 });
+
+mongoose.models = {};
 
 module.exports = mongoose.model('User', UserSchema);
