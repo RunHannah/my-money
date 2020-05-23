@@ -1,31 +1,80 @@
 import React, { useState, useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 
-export function Chart() {
-  const [data, setData] = useState(null);
-  console.log('data', data);
-  useEffect(() => {
-    const getTransactions = async () => {
-      const result = await axios('/api/transactions');
+const Chart = () => {
+  const [data, setData] = useState({});
 
-      setData(result.data.data);
-    };
+  const getTransactions = async () => {
+    let category = [];
+    let amount = [];
+    let date = [];
+    await axios
+      .get('/api/transactions')
+      .then((res) => {
+        for (const dataObj of res.data.data) {
+          category.push(dataObj.category);
+          amount.push(parseInt(dataObj.amount));
+          date.push(dataObj.date);
+        }
+
+        setData({
+          labels: date,
+          datasets: [
+            {
+              label: 'transactions',
+              data: amount,
+              backgroundColor: ['rgb(178, 76, 178)'],
+              borderWidth: 2,
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(category, amount);
+  };
+
+  useEffect(() => {
     getTransactions();
   }, []);
 
   return (
     <div className='chart'>
-      {data
-        ? data.map((item) => (
-            <ul>
-              <li key={item._id}>
-                <p>{item.transactionName}</p>
-              </li>
-            </ul>
-          ))
-        : ''}
+      <h1>Line Chart</h1>
+      <div>
+        <Line
+          data={data}
+          options={{
+            responsive: true,
+            title: { text: 'Year Expenses', display: true },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                },
+              ],
+              xAxes: [
+                {
+                  gridLines: {
+                    display: false,
+                  },
+                },
+              ],
+            },
+          }}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default Chart;
