@@ -9,7 +9,7 @@ function App() {
     const getTransactions = async () => {
       const result = await axios('/api/transactions');
 
-      setData(result.data);
+      setData(result.data.data);
     };
     getTransactions();
   }, []);
@@ -19,6 +19,15 @@ function App() {
       <header className='App-header'>
         <p>Personal Finance Tracker</p>
       </header>
+      {data
+        ? data.map((item) => (
+            <ul>
+              <li key={item._id}>
+                <p>{item.transactionName}</p>
+              </li>
+            </ul>
+          ))
+        : ''}
     </div>
   );
 }
