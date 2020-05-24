@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from './components/chart';
+import BarChart from './components/barChart';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <header className='App-header'>
         <p>Personal Finance Tracker</p>
       </header>
-      <Chart />
+      <BarChart />
     </div>
   );
 }

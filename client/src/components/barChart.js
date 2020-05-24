@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
-const Chart = () => {
+const BarChart = () => {
   const [data, setData] = useState({});
 
   const months = [
@@ -120,4 +120,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default BarChart;
