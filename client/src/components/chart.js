@@ -1,30 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
 const Chart = () => {
   const [data, setData] = useState({});
 
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
   const getTransactions = async () => {
-    let category = [];
-    let amount = [];
-    let date = [];
+    let totalMonth = {
+      Jan: 0,
+      Feb: 0,
+      Mar: 0,
+      Apr: 0,
+      May: 0,
+      Jun: 0,
+      Jul: 0,
+      Aug: 0,
+      Sep: 0,
+      Oct: 0,
+      Nov: 0,
+      Dec: 0,
+    };
+
     await axios
       .get('/api/transactions')
       .then((res) => {
         for (const dataObj of res.data.data) {
-          category.push(dataObj.category);
-          amount.push(parseInt(dataObj.amount));
-          date.push(dataObj.date);
+          let month = months[new Date(dataObj.date).getMonth()];
+          let amount = parseInt(dataObj.amount);
+
+          if (month in totalMonth) {
+            totalMonth[month] += amount;
+          }
         }
 
         setData({
-          labels: date,
+          labels: Object.keys(totalMonth),
           datasets: [
             {
               label: 'transactions',
-              data: amount,
-              backgroundColor: ['rgb(178, 76, 178)'],
+              data: Object.values(totalMonth),
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+              ],
+              borderColor: 'rgb(255, 99, 132)',
               borderWidth: 2,
             },
           ],
@@ -33,18 +77,17 @@ const Chart = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(category, amount);
   };
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  });
 
   return (
     <div className='chart'>
-      <h1>Line Chart</h1>
+      <h1>Bar Chart</h1>
       <div>
-        <Line
+        <Bar
           data={data}
           options={{
             responsive: true,
@@ -58,7 +101,7 @@ const Chart = () => {
                     beginAtZero: true,
                   },
                   gridLines: {
-                    display: false,
+                    display: true,
                   },
                 },
               ],
