@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BarChart from './components/barChart';
+import LineChart from './components/lineChart';
 import axios from 'axios';
 import './App.css';
 
@@ -91,7 +92,10 @@ function App() {
       <header className='App-header'>
         <p>Personal Finance Tracker</p>
       </header>
-      <BarChart data={data} />
+      <div className='charts'>
+        <BarChart data={data} />
+        <LineChart data={data} />
+      </div>
     </div>
   );
 }
