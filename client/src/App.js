@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import BarChart from './components/barChart';
-import LineChart from './components/lineChart';
+import BarChart from './components/charts/barChart';
+import LineChart from './components/charts/lineChart';
 import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
 
   const months = [
     'Jan',
@@ -51,31 +51,7 @@ function App() {
         }
 
         console.log('totalMonth', totalMonth);
-        setData({
-          labels: Object.keys(totalMonth),
-          datasets: [
-            {
-              label: 'transactions',
-              data: Object.values(totalMonth),
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-              ],
-              borderColor: 'rgb(255, 99, 132)',
-              borderWidth: 2,
-            },
-          ],
-        });
+        setData(totalMonth);
       })
       .catch((err) => {
         console.log(err);
@@ -84,7 +60,6 @@ function App() {
 
   useEffect(() => {
     getTransactions();
-    console.log('data', data);
   }, []);
 
   return (
@@ -92,10 +67,14 @@ function App() {
       <header className='App-header'>
         <p>Personal Finance Tracker</p>
       </header>
-      <div className='charts'>
-        <BarChart data={data} />
-        <LineChart data={data} />
-      </div>
+      {data ? (
+        <div className='charts'>
+          <BarChart data={data} />
+          <LineChart data={data} />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
