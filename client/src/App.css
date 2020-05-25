@@ -3,7 +3,13 @@
 }
 
 .charts {
+  position: relative;
   max-width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+}
+
+canvas {
+  border: 1px dotted red;
 }
