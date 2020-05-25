@@ -127,9 +127,9 @@ const BarChart = ({ data }) => {
   }, []);
 
   return (
-    <div className='barChart'>
+    <div className='barCharts'>
       <h1>Bar Chart</h1>
-      <div className=''>
+      <div className='barChart'>
         <Bar
           data={barMonthData}
           options={{

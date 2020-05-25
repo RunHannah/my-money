@@ -3,11 +3,7 @@
 }
 
 .charts {
-  position: relative;
-  max-width: 100%;
-  margin: auto;
-  height: 80vh;
-  width: 80vw;
+  width: 100%;
 }
 
 canvas {
