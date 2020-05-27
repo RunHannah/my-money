@@ -1,57 +1,66 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [newUser, setNewUser] = useState({});
+  const [registeredUser, setRegisteredUser] = useState({});
 
   useEffect(() => {
-    setName('');
-    setEmail('');
-    setPassword('');
-  }, []);
+    console.log('registeredUser', registeredUser);
+  }, [registeredUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    newUser = {
-      name,
-      email,
-      password,
-    };
+    axios
+      .post('/api/user/register', {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        setRegisteredUser(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
     <div className='register'>
-      <form>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='name'>Name</label>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <label htmlFor='email'>Email</label>
-          <input
-            type='text'
-            name='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <label htmlFor='password'>Password</label>
-          <input
-            type='text'
-            name='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button>Register</button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='name'>Name</label>
+        <input
+          type='text'
+          name='name'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label htmlFor='email'>Email</label>
+        <input
+          type='text'
+          name='email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label htmlFor='password'>Password</label>
+        <input
+          type='text'
+          name='password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button>Register</button>
       </form>
     </div>
   );
