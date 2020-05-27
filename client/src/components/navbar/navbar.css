@@ -1,0 +1,19 @@
+.navbar {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 15px;
+}
+
+.navName {
+  font-size: 14px;
+}
+
+.charts,
+.navLogin,
+.navRegister,
+.navProfile,
+.navLogout {
+  margin: 0 15px;
+}

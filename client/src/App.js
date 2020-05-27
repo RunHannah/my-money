@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
 import Form from './components/form/form';
 import BarChart from './components/charts/barChart';
 import LineChart from './components/charts/lineChart';
-import axios from 'axios';
+import NavBar from './components/navbar/navbar';
+import Register from './components/register';
 import './App.css';
 
 function App() {
   const [data, setData] = useState();
+  const [user, setUser] = useState('');
 
   async function getTransactions() {
     await axios
@@ -25,9 +29,10 @@ function App() {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>Personal Finance Tracker</p>
-      </header>
+      <NavBar user={user} />
+      <Switch>
+        <Route path='/register' component={Register} />
+      </Switch>
       <Form />
       {data ? (
         <div className='charts'>
