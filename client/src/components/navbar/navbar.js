@@ -12,7 +12,7 @@ const NavBar = ({ user }) => {
         <NavLink className='charts' to='/charts'>
           Charts
         </NavLink>
-        {!user && (
+        {!user.id && (
           <React.Fragment>
             <NavLink className='navLogin' to='/login'>
               Login
@@ -22,7 +22,7 @@ const NavBar = ({ user }) => {
             </NavLink>
           </React.Fragment>
         )}
-        {user && (
+        {user.id && (
           <React.Fragment>
             <NavLink className='navProfile' to='/profile'>
               {user.name}
