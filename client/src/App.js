@@ -46,12 +46,12 @@ function App() {
     // };
 
     // setUser(user);
-  }, []);
+  }, [user]);
 
   return (
     <div className='App'>
       <UserContext.Provider value={providerValue}>
-        <NavBar user={user} />
+        <NavBar />
         <Switch>
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={Register} />} />
