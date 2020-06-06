@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../userContext';
 import axios from 'axios';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [registeredUser, setRegisteredUser] = useState({});
-
-  useEffect(() => {
-    console.log('registeredUser', registeredUser);
-  }, [registeredUser]);
+  const { user, setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +18,8 @@ function Register() {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
-        setRegisteredUser(response.data);
+        setUser(response.data);
+        console.log('response.data', response.data);
       })
       .catch(function (error) {
         console.log(error);
