@@ -5,7 +5,7 @@ import Form from './components/form/form';
 import BarChart from './components/charts/barChart';
 import LineChart from './components/charts/lineChart';
 import NavBar from './components/navbar/navbar';
-import Register from './components/register';
+import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
 import { UserContext } from './userContext';
 // import auth from './services/authService';

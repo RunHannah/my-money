@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../../userContext';
 import auth from '../../services/authService';
 
@@ -11,6 +11,9 @@ const LoginForm = () => {
     e.preventDefault();
     const verifiedUser = await auth.login(email, password);
     setUser(verifiedUser.data);
+
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -25,6 +28,7 @@ const LoginForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <br />
         <label htmlFor='password'>Password</label>
         <input
           type='text'
