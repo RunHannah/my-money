@@ -50,8 +50,8 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar user={user} registerUser={setUser} />
       <UserContext.Provider value={providerValue}>
+        <NavBar user={user} />
         <Switch>
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={Register} />} />
