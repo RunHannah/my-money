@@ -9,8 +9,13 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const verifiedUser = await auth.login(email, password);
-    setUser(verifiedUser.data);
+    try {
+      const verifiedUser = await auth.login(email, password);
+      setUser(verifiedUser.data);
+    } catch (error) {
+      // need to update
+      alert('User email not found');
+    }
 
     setEmail('');
     setPassword('');

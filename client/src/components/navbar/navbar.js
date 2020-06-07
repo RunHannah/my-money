@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import { UserContext } from '../../userContext';
 import './navbar.css';
 
@@ -27,9 +27,7 @@ const NavBar = () => {
         )}
         {user.id && (
           <React.Fragment>
-            <NavLink className='navProfile' to='/profile'>
-              {user.name}
-            </NavLink>
+            <Redirect className='navProfile' to='/profile' />
             <NavLink className='navLogout' to='/logout'>
               Logout
             </NavLink>
