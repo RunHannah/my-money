@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from '../../userContext';
 import auth from '../../services/authService';
 
@@ -7,18 +7,33 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const { user, setUser } = useContext(UserContext);
 
+  const _isMounted = useRef(true);
+  const clearFields = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const verifiedUser = await auth.login(email, password);
-      setUser(verifiedUser.data);
+
+      if (_isMounted.current && verifiedUser) {
+        clearFields();
+        setUser(verifiedUser.data);
+      }
     } catch (error) {
       // need to update
+      console.log('error', error);
       alert('User email not found');
+      clearFields();
     }
-
-    setEmail('');
-    setPassword('');
   };
 
   return (
