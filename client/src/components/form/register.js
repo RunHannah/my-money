@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from '../../userContext';
-import axios from 'axios';
+import reg from '../../services/regService';
 
 function Register() {
   const [name, setName] = useState('');
@@ -8,26 +8,35 @@ function Register() {
   const [password, setPassword] = useState('');
   const { user, setUser } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .post('/api/user/register', {
-        name: name,
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        setUser(response.data);
-        console.log('response.data', response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+  const _isMounted = useRef(true);
+  const clearFields = () => {
     setName('');
     setEmail('');
     setPassword('');
+  };
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const registeredUser = await reg.register(name, email, password);
+      if (_isMounted.current && registeredUser) {
+        clearFields();
+
+        setUser(registeredUser.data);
+      }
+    } catch (error) {
+      // need to update
+      console.log('error', error);
+      alert('Registration error');
+      clearFields();
+    }
   };
 
   return (
