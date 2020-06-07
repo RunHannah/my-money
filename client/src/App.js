@@ -8,6 +8,7 @@ import NavBar from './components/navbar/navbar';
 import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
+import Logout from './components/logout';
 import { UserContext } from './userContext';
 // import auth from './services/authService';
 import './App.css';
@@ -57,6 +58,7 @@ function App() {
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
+          <Route path='/logout' component={Logout} />
         </Switch>
         {data && !user.id ? (
           <div>
