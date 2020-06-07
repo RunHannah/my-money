@@ -7,6 +7,7 @@ import LineChart from './components/charts/lineChart';
 import NavBar from './components/navbar/navbar';
 import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
+import Profile from './components/profile';
 import { UserContext } from './userContext';
 // import auth from './services/authService';
 import './App.css';
@@ -54,18 +55,28 @@ function App() {
         <NavBar />
         <Switch>
           <Route path='/login' component={LoginForm} />
-          <Route path='/register' component={Register} />} />
+          <Route path='/register' component={Register} />
+          <Route path='/profile' component={Profile} />
         </Switch>
+        {data && !user.id ? (
+          <div>
+            <div className='charts'>
+              <BarChart data={data} />
+              <LineChart data={data} />
+            </div>
+          </div>
+        ) : data && user.id ? (
+          <div>
+            <Form />
+            <div className='charts'>
+              <BarChart data={data} />
+              <LineChart data={data} />
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
       </UserContext.Provider>
-      <Form />
-      {data ? (
-        <div className='charts'>
-          <BarChart data={data} />
-          <LineChart data={data} />
-        </div>
-      ) : (
-        ''
-      )}
     </div>
   );
 }
