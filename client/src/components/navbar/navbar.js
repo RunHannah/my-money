@@ -4,7 +4,7 @@ import { UserContext } from '../../userContext';
 import './navbar.css';
 
 const NavBar = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <nav className='navbar '>

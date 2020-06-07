@@ -36,18 +36,6 @@ function App() {
 
   useEffect(() => {
     console.log('*** user', user);
-    // const authUser = {
-    //   id: null,
-    //   token: null,
-    //   loginUser: function (email, password) {
-    //     return auth.login(email, password);
-    //   },
-    //   logoutUser: function () {
-    //     this.setState({ user: {} });
-    //   },
-    // };
-
-    // setUser(user);
   }, [user]);
 
   return (
