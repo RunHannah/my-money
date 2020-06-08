@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
+import Charts from './components/charts';
 import Form from './components/form/form';
-import BarChart from './components/charts/barChart';
-import LineChart from './components/charts/lineChart';
 import NavBar from './components/navbar/navbar';
 import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
@@ -49,20 +48,12 @@ function App() {
           <Route path='/logout' component={Logout} />
         </Switch>
         {data && !user.id ? (
-          <div>
-            <div className='charts'>
-              <BarChart data={data} />
-              <LineChart data={data} />
-            </div>
-          </div>
+          <Charts data={data} />
         ) : data && user.id ? (
-          <div>
+          <React.Fragment>
             <Form />
-            <div className='charts'>
-              <BarChart data={data} />
-              <LineChart data={data} />
-            </div>
-          </div>
+            <Charts data={data} />
+          </React.Fragment>
         ) : (
           ''
         )}
