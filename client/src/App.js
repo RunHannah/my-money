@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Charts from './components/charts';
-import Form from './components/form/form';
 import NavBar from './components/navbar/navbar';
 import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
 import Logout from './components/logout';
 import { UserContext } from './userContext';
-// import auth from './services/authService';
 import './App.css';
 
 function App() {
@@ -46,17 +44,13 @@ function App() {
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
           <Route path='/logout' component={Logout} />
+          {data && (
+            <>
+              <Route path='/charts' render={() => <Charts data={data} />} />
+              <Redirect from='/' exact to='/charts' />
+            </>
+          )}
         </Switch>
-        {data && !user.id ? (
-          <Charts data={data} />
-        ) : data && user.id ? (
-          <React.Fragment>
-            <Form />
-            <Charts data={data} />
-          </React.Fragment>
-        ) : (
-          ''
-        )}
       </UserContext.Provider>
     </div>
   );
