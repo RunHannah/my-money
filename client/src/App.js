@@ -12,20 +12,18 @@ import './App.css';
 import auth from './services/authService';
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [user, setUser] = useState(null);
 
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   async function getTransactions() {
-    await axios
-      .get('/api/transactions')
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const res = await axios.get('/api/transactions');
+      setData(res.data.data);
+    } catch (err) {
+      console.log('err', err);
+    }
   }
 
   useEffect(() => {
