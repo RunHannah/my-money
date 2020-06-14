@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UserContext } from './userContext';
-import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import Charts from './components/charts';
 import NavBar from './components/navbar/navbar';
@@ -10,6 +9,7 @@ import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
 import Logout from './components/logout';
 import './App.css';
+import auth from './services/authService';
 
 function App() {
   const [data, setData] = useState();
@@ -34,11 +34,8 @@ function App() {
 
   useEffect(() => {
     console.log('*** user', user);
-    try {
-      const jwt = localStorage.getItem('token');
-      const loggedUser = jwtDecode(jwt);
-      setUser(loggedUser);
-    } catch (ex) {}
+    const loggedUser = auth.getCurrentUser();
+    setUser(loggedUser);
   }, []);
 
   return (

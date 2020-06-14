@@ -20,13 +20,9 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const verifiedUser = await auth.login(email, password);
-
-      if (_isMounted.current && verifiedUser) {
-        localStorage.setItem('token', verifiedUser.data.token);
-        clearFields();
-        window.location = '/';
-      }
+      await auth.login(email, password);
+      clearFields();
+      window.location = '/';
     } catch (error) {
       // need to update
       console.log('error', error);

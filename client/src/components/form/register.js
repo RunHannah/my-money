@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import reg from '../../services/regService';
+import auth from '../../services/authService';
 
 function Register() {
   const [name, setName] = useState('');
@@ -24,11 +25,9 @@ function Register() {
 
     try {
       const registeredUser = await reg.register(name, email, password);
-      if (_isMounted.current && registeredUser) {
-        localStorage.setItem('token', registeredUser.headers['auth-token']);
-        clearFields();
-        window.location = '/';
-      }
+      auth.loginWithJwt(registeredUser);
+      clearFields();
+      window.location = '/';
     } catch (error) {
       // need to update
       console.log('error', error);
