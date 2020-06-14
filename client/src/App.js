@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { UserContext } from './userContext';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import Charts from './components/charts';
 import NavBar from './components/navbar/navbar';
 import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
 import Logout from './components/logout';
-import { UserContext } from './userContext';
 import './App.css';
 
 function App() {
   const [data, setData] = useState();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
@@ -33,7 +34,12 @@ function App() {
 
   useEffect(() => {
     console.log('*** user', user);
-  }, [user]);
+    try {
+      const jwt = localStorage.getItem('token');
+      const loggedUser = jwtDecode(jwt);
+      setUser(loggedUser);
+    } catch (ex) {}
+  }, []);
 
   return (
     <div className='App'>

@@ -1,13 +1,12 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { UserContext } from '../../userContext';
+import React, { useState, useRef, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import auth from '../../services/authService';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser } = useContext(UserContext);
-
   const _isMounted = useRef(true);
+
   const clearFields = () => {
     setEmail('');
     setPassword('');
@@ -25,8 +24,9 @@ const LoginForm = () => {
       const verifiedUser = await auth.login(email, password);
 
       if (_isMounted.current && verifiedUser) {
+        localStorage.setItem('token', verifiedUser.data.token);
         clearFields();
-        setUser(verifiedUser.data);
+        window.location = '/';
       }
     } catch (error) {
       // need to update

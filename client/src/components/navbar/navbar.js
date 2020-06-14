@@ -15,7 +15,7 @@ const NavBar = () => {
         <NavLink className='charts' to='/charts'>
           Charts
         </NavLink>
-        {!user.id && (
+        {!user && (
           <React.Fragment>
             <NavLink className='navLogin' to='/login'>
               Login
@@ -25,7 +25,7 @@ const NavBar = () => {
             </NavLink>
           </React.Fragment>
         )}
-        {user.id && (
+        {user && (
           <React.Fragment>
             <NavLink className='navProfile' to='/profile'>
               Profile
