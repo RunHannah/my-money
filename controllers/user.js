@@ -22,9 +22,12 @@ exports.registerNewUser = async (req, res, next) => {
     password: hashedPw,
   });
 
+  const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
+
   // save new user
   await user.save().then((user) => {
-    res.status(200).json({ success: true, id: user._id });
+    // res.status(200).json({ success: true, id: user._id });
+    res.header('auth-token', token).json({ token, name: user.name });
   });
 };
 
@@ -42,7 +45,7 @@ exports.userLogin = async (req, res, next) => {
 
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).json({ token, id: user._id });
+  res.header('auth-token', token).json({ token, name: user.name });
 };
 
 exports.deleteUser = async (req, res, next) => {

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import auth from '../../services/authService';
 
 const LoginForm = () => {

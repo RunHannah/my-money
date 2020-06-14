@@ -1,14 +1,12 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { UserContext } from '../../userContext';
+import React, { useState, useRef, useEffect } from 'react';
 import reg from '../../services/regService';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser } = useContext(UserContext);
-
   const _isMounted = useRef(true);
+
   const clearFields = () => {
     setName('');
     setEmail('');
@@ -27,9 +25,9 @@ function Register() {
     try {
       const registeredUser = await reg.register(name, email, password);
       if (_isMounted.current && registeredUser) {
+        localStorage.setItem('token', registeredUser.headers['auth-token']);
         clearFields();
-
-        setUser(registeredUser.data);
+        window.location = '/';
       }
     } catch (error) {
       // need to update
