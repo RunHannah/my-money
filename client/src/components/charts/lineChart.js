@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../../contexts/dataContext';
 import { Line } from 'react-chartjs-2';
 import './lineChart.css';
 
-const LineChart = ({ data }) => {
+const LineChart = () => {
+  const { data } = useContext(DataContext);
   const [lineData, setLineData] = useState({});
 
   function changeToDollar(value) {

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../../contexts/dataContext';
 import { Bar } from 'react-chartjs-2';
 import './barChart.css';
 
-const BarChart = ({ data }) => {
+const BarChart = () => {
+  const { data } = useContext(DataContext);
   const [barMonthData, setBarMonthData] = useState({});
   const [barCategoryData, setBarCategoryData] = useState({});
 
