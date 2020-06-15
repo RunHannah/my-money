@@ -8,6 +8,7 @@ import Register from './components/form/register';
 import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
 import Logout from './components/logout';
+import Transactions from './components/transactions/transactions';
 import './App.css';
 import auth from './services/authService';
 
@@ -48,6 +49,7 @@ function App() {
           {data && (
             <>
               <Route path='/charts' render={() => <Charts data={data} />} />
+              <Route path='/transactions' component={Transactions} />
               <Redirect from='/' exact to='/charts' />
             </>
           )}

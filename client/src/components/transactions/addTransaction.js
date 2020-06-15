@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './form.css';
+import './addTransaction.css';
 
-const Form = () => {
+const AddTransaction = () => {
   const [transactionName, setTransactionName] = useState('');
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
@@ -93,4 +93,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddTransaction;

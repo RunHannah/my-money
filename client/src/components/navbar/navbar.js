@@ -5,7 +5,7 @@ import './navbar.css';
 
 const NavBar = () => {
   const { user } = useContext(UserContext);
-
+  console.log('user', user);
   return (
     <nav className='navbar '>
       <Link className='navName' to='/'>
@@ -27,6 +27,9 @@ const NavBar = () => {
         )}
         {user && (
           <React.Fragment>
+            <NavLink className='navProfile' to='/transactions'>
+              Transactions
+            </NavLink>
             <NavLink className='navProfile' to='/profile'>
               Profile
             </NavLink>
