@@ -1,7 +1,10 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import http from './httpService';
 
 const tokenKey = 'token';
+
+http.setJwt(getJwt());
 
 export async function login(email, password) {
   const response = await axios.post('/api/user/login', {
@@ -29,9 +32,14 @@ export function getCurrentUser() {
   }
 }
 
+export function getJwt() {
+  return localStorage.getItem(tokenKey);
+}
+
 export default {
   login,
   logout,
   getCurrentUser,
   loginWithJwt,
+  getJwt,
 };

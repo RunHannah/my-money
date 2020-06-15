@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../userContext';
 import './addTransaction.css';
+import axios from 'axios';
+// import auth from '../../services/authService';
 
 const AddTransaction = () => {
   const [transactionName, setTransactionName] = useState('');
@@ -7,6 +10,7 @@ const AddTransaction = () => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [newTransaction, setNewTransaction] = useState({});
+  const { user } = useContext(UserContext);
 
   const categories = [
     'Select A Category',
@@ -19,7 +23,7 @@ const AddTransaction = () => {
     'Utilities',
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('clicked');
     let transactionObj = {
@@ -27,15 +31,18 @@ const AddTransaction = () => {
       date: '',
       amount: null,
       category: '',
+      userId: null,
     };
 
-    if (transactionName && date && amount && category) {
+    if (user && transactionName && date && amount && category) {
       transactionObj.transactionName = transactionName;
       transactionObj.date = date;
       transactionObj.amount = amount;
       transactionObj.category = category;
+      transactionObj.userId = user.id;
 
-      setNewTransaction(transactionObj);
+      // setNewTransaction(transactionObj);
+      await axios.post('/api/transactions', transactionObj);
     }
 
     setTransactionName('');
@@ -47,6 +54,7 @@ const AddTransaction = () => {
 
   useEffect(() => {
     console.log('useEffect');
+    console.log('user', user);
   }, []);
 
   return (
