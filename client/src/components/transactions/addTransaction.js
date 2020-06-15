@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../userContext';
 import './addTransaction.css';
 import axios from 'axios';
-// import auth from '../../services/authService';
 
 const AddTransaction = () => {
   const [transactionName, setTransactionName] = useState('');
