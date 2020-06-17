@@ -3,11 +3,14 @@ import { DataContext } from '../../contexts/dataContext';
 
 const ListTransactions = () => {
   const { data } = useContext(DataContext);
+  console.log('data', data);
   return (
     <div>
-      {data.map((item) => (
-        <p key={item._id}>{item.transactionName}</p>
-      ))}
+      {data === 'object' && data.length > 0 ? (
+        data.map((item) => <p key={item._id}>{item.transactionName}</p>)
+      ) : (
+        <p>Add a new transaction</p>
+      )}
     </div>
   );
 };

@@ -67,7 +67,7 @@ const LineChart = () => {
 
   useEffect(() => {
     loadData(data);
-  }, []);
+  }, [data]);
 
   return (
     <div className='lineChart'>

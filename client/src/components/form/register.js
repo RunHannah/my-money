@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import reg from '../../services/regService';
 import auth from '../../services/authService';
 
-function Register() {
+function Register(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const _isMounted = useRef(true);
 
-  const clearFields = () => {
+  const clearFields = (props) => {
     setName('');
     setEmail('');
     setPassword('');
@@ -27,7 +27,8 @@ function Register() {
       const registeredUser = await reg.register(name, email, password);
       auth.loginWithJwt(registeredUser);
       clearFields();
-      window.location = '/';
+      props.history.push('/');
+      window.location.reload();
     } catch (error) {
       // need to update
       console.log('error', error);

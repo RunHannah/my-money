@@ -122,11 +122,11 @@ const BarChart = () => {
 
   useEffect(() => {
     loadMonthData(data);
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     loadCategoryData(data);
-  }, []);
+  }, [data]);
 
   return (
     <div className='barCharts'>

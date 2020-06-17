@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import auth from '../../services/authService';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const _isMounted = useRef(true);
@@ -22,7 +22,8 @@ const LoginForm = () => {
     try {
       await auth.login(email, password);
       clearFields();
-      window.location = '/';
+      props.history.push('/');
+      window.location.reload();
     } catch (error) {
       // need to update
       console.log('error', error);

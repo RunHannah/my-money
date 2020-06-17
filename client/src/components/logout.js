@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import auth from '../services/authService';
 
-const Logout = () => {
+const Logout = (props) => {
   useEffect(() => {
     auth.logout();
-    window.location = '/';
-  }, []);
+    props.history.push('/');
+    window.location.reload();
+  });
 
   return null;
 };

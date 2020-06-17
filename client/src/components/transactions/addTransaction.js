@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import './addTransaction.css';
 import axios from 'axios';
@@ -8,7 +8,6 @@ const AddTransaction = () => {
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
-  const [newTransaction, setNewTransaction] = useState({});
   const { user } = useContext(UserContext);
 
   const categories = [
@@ -40,7 +39,6 @@ const AddTransaction = () => {
       transactionObj.category = category;
       transactionObj.userId = user.id;
 
-      // setNewTransaction(transactionObj);
       await axios.post('/api/transactions', transactionObj);
     }
 
@@ -48,13 +46,7 @@ const AddTransaction = () => {
     setDate('');
     setAmount('');
     setCategory('');
-    setNewTransaction({});
   };
-
-  useEffect(() => {
-    console.log('useEffect');
-    console.log('user', user);
-  }, []);
 
   return (
     <div className='form'>
