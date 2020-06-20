@@ -9,7 +9,7 @@ const ListTransactions = () => {
       {data === 'object' && data.length > 0 ? (
         data.map((item) => <p key={item._id}>{item.transactionName}</p>)
       ) : (
-        <p>Add a new transaction</p>
+        <p>Transaction Items</p>
       )}
     </div>
   );

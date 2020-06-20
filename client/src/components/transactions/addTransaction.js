@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
-import './addTransaction.css';
 import axios from 'axios';
+import './addTransaction.css';
 
 const AddTransaction = () => {
   const [transactionName, setTransactionName] = useState('');
@@ -49,9 +49,10 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className='form'>
-      <form onSubmit={handleSubmit}>
-        <label>Add a New Transaction:</label>
+    <div className='container addTransaction'>
+      <form className='form' onSubmit={handleSubmit}>
+        <h1 className='formName'>Add a New Transaction:</h1>
+        <label>Transaction Name</label>
         <input
           type='text'
           name='transactionName'
@@ -60,6 +61,7 @@ const AddTransaction = () => {
           onChange={(e) => setTransactionName(e.target.value)}
           required
         />
+        <label>Date</label>
         <input
           type='date'
           name='date'
@@ -67,6 +69,7 @@ const AddTransaction = () => {
           onChange={(e) => setDate(e.target.value)}
           required
         />
+        <label>Amount</label>
         <input
           type='number'
           name='amount'
