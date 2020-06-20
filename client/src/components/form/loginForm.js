@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import auth from '../../services/authService';
+import './form.css';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('');
@@ -33,9 +34,9 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className='loginForm'>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='container'>
+      <h1 className='formName'>Login</h1>
+      <form className='form' onSubmit={handleSubmit}>
         <label htmlFor='email'>Email</label>
         <input
           type='text'
@@ -44,7 +45,6 @@ const LoginForm = (props) => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br />
         <label htmlFor='password'>Password</label>
         <input
           type='text'
@@ -53,6 +53,7 @@ const LoginForm = (props) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button>Login</button>
       </form>
     </div>

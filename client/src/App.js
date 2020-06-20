@@ -5,7 +5,7 @@ import { DataContext } from './contexts/dataContext';
 import auth from './services/authService';
 import Charts from './components/charts/charts';
 import NavBar from './components/navbar/navbar';
-import Register from './components/form/register';
+import Register from './components/form/registerForm';
 import LoginForm from './components/form/loginForm';
 import Profile from './components/profile';
 import Logout from './components/logout';

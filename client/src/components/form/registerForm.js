@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import reg from '../../services/regService';
 import auth from '../../services/authService';
+import './form.css';
 
 function Register(props) {
   const [name, setName] = useState('');
@@ -38,8 +39,9 @@ function Register(props) {
   };
 
   return (
-    <div className='register'>
-      <form onSubmit={handleSubmit}>
+    <div className='container'>
+      <h1 className='formName'>Register</h1>
+      <form className='form' onSubmit={handleSubmit}>
         <label htmlFor='name'>Name</label>
         <input
           type='text'
