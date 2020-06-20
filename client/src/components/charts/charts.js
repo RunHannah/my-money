@@ -2,6 +2,7 @@ import React, { useContext, Fragment } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import BarChart from './barChart';
 import LineChart from './lineChart';
+import './charts.css';
 
 const Charts = () => {
   const { data } = useContext(DataContext);

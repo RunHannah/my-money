@@ -1,11 +1,17 @@
 .App {
-  text-align: center;
-}
-
-.charts {
+  max-width: 90vw;
   width: 100%;
+  margin: 0px auto;
 }
 
-canvas {
-  border: 1px dotted red;
+@media (min-width: 768px) {
+  .App {
+    max-width: 80vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .App {
+    max-width: 60vw;
+  }
 }

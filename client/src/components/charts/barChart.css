@@ -1,19 +1,13 @@
 .barCharts {
   width: 100%;
   position: relative;
-  /* background-color: green; */
+  margin: 0 auto;
 }
 
 .barChart {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   position: relative;
-  height: 50vh;
-  width: 50%;
-  /* background-color: yellow; */
-}
-
-.barChart canvas {
-  margin: 10px;
+  width: 100%;
 }

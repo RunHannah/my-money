@@ -51,7 +51,7 @@ const AddTransaction = () => {
   return (
     <div className='container addTransaction'>
       <form className='form' onSubmit={handleSubmit}>
-        <h1 className='formName'>Add a New Transaction:</h1>
+        <h1 className='formName'>Add a New Transaction</h1>
         <label>Transaction Name</label>
         <input
           type='text'
@@ -73,6 +73,7 @@ const AddTransaction = () => {
         <input
           type='number'
           name='amount'
+          min='1'
           value={amount}
           placeholder='amount'
           onChange={(e) => setAmount(e.target.value)}

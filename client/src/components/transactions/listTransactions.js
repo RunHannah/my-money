@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../contexts/dataContext';
+import './transactions.css';
 
 const ListTransactions = () => {
   const { data } = useContext(DataContext);
   console.log('data', data);
   return (
-    <div>
+    <div className='listContainer'>
       {data === 'object' && data.length > 0 ? (
         data.map((item) => <p key={item._id}>{item.transactionName}</p>)
       ) : (

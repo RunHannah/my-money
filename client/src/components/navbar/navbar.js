@@ -7,12 +7,12 @@ const NavBar = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <nav className='navbar '>
+    <nav className='navbar'>
       <Link className='navName' to='/'>
         Personal Finance Tracker
       </Link>
       <div className='navItems'>
-        <NavLink className='charts' to='/charts'>
+        <NavLink className='navCharts' to='/charts'>
           Charts
         </NavLink>
         {!user && (

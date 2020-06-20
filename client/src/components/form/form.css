@@ -1,7 +1,5 @@
 .container {
-  max-width: 300px;
   width: 100%;
-  margin: 100px auto;
 }
 
 .form {
@@ -25,6 +23,7 @@ input {
   width: 100%;
   height: 25px;
   margin: 2px auto;
+  border-radius: 3px;
 }
 
 button {
@@ -37,17 +36,15 @@ button {
   color: #fff;
   font-size: 14px;
   font-weight: 700;
+  border-style: none;
 }
 
 button:hover {
   cursor: pointer;
+  background: #70cad1;
 }
 
 @media (min-width: 768px) {
-  .container {
-    max-width: 700px;
-  }
-
   .formName {
     font-size: 2.5rem;
   }
