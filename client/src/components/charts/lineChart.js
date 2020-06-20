@@ -57,8 +57,8 @@ const LineChart = () => {
         {
           label: 'transactions',
           data: Object.values(totalMonth),
-          backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: ['rgba(105, 220, 158)'],
+          borderColor: 'rgb(108, 142, 173)',
           borderWidth: 2,
         },
       ],
