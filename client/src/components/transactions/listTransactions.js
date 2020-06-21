@@ -4,7 +4,6 @@ import './transactions.css';
 
 const ListTransactions = () => {
   const { data } = useContext(DataContext);
-  console.log('data', data);
   return (
     <div className='listContainer'>
       {data === 'object' && data.length > 0 ? (

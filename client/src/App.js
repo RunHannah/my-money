@@ -28,9 +28,9 @@ function App() {
     }
   }
 
-  async function getUserTransactions(user) {
+  async function getUserTransactions(userId) {
     try {
-      const res = await transact.getUserTransactions(user.id);
+      const res = await transact.getUserTransactions(userId);
       setData(res.data.data);
     } catch (err) {
       console.log('getUserTransactions', err);
@@ -46,7 +46,7 @@ function App() {
   // get default or user data
   useEffect(() => {
     if (user) {
-      getUserTransactions(user);
+      getUserTransactions(user.id);
     } else {
       getTransactions();
     }

@@ -5,7 +5,6 @@ import './navbar.css';
 
 const NavBar = () => {
   const { user } = useContext(UserContext);
-
   return (
     <nav className='navbar'>
       <Link className='navName' to='/'>
@@ -31,7 +30,7 @@ const NavBar = () => {
               Transactions
             </NavLink>
             <NavLink className='navProfile' to='/profile'>
-              Profile
+              {user.name}
             </NavLink>
             <NavLink className='navLogout' to='/logout'>
               Logout

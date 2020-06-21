@@ -1,7 +1,4 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-
-const tokenKey = 'token';
 
 export async function login(email, password) {
   const response = await axios.post('/api/user/login', {
@@ -9,21 +6,22 @@ export async function login(email, password) {
     password,
   });
 
-  localStorage.setItem(tokenKey, response.data.token);
+  localStorage.setItem('user', JSON.stringify(response.data));
 }
 
 export async function loginWithJwt(registeredUser) {
-  localStorage.setItem(tokenKey, registeredUser.headers['auth-token']);
+  localStorage.setItem('user', JSON.stringify(registeredUser));
 }
 
 export function logout() {
-  localStorage.removeItem(tokenKey);
+  localStorage.removeItem('user');
 }
 
 export function getCurrentUser() {
   try {
-    const jwt = localStorage.getItem(tokenKey);
-    return jwtDecode(jwt);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const currentUser = { name: storedUser.name, id: storedUser.id };
+    return currentUser;
   } catch (error) {
     return null;
   }

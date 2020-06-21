@@ -22,13 +22,13 @@ exports.registerNewUser = async (req, res, next) => {
     password: hashedPw,
   });
 
+  // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
 
-  // save new user
-  await user.save().then((user) => {
-    // res.status(200).json({ success: true, id: user._id });
-    res.header('auth-token', token).json({ token, name: user.name });
-  });
+  const savedUser = await user.save();
+  res
+    .header('auth-token', token)
+    .json({ token, name: savedUser.name, id: savedUser._id });
 };
 
 exports.userLogin = async (req, res, next) => {
@@ -45,11 +45,13 @@ exports.userLogin = async (req, res, next) => {
 
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).json({ token, name: user.name });
+  res
+    .header('auth-token', token)
+    .json({ token, name: user.name, id: user._id });
 };
 
 exports.deleteUser = async (req, res, next) => {
-  await User.remove({ _id: req.params.userId })
+  await User.remove({ _id: req.user.userId })
     .then((result) => {
       res.status(200).json({ message: 'User deleted' });
     })

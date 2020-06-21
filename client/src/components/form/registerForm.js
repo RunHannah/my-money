@@ -26,7 +26,7 @@ function Register(props) {
 
     try {
       const registeredUser = await reg.register(name, email, password);
-      auth.loginWithJwt(registeredUser);
+      auth.loginWithJwt(registeredUser.data);
       clearFields();
       props.history.push('/');
       window.location.reload();
