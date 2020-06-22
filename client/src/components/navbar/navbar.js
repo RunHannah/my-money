@@ -1,36 +1,16 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
-import { DataContext } from '../../contexts/dataContext';
-import transact from '../../services/transactService';
 import './navbar.css';
 
 const NavBar = () => {
   const { user } = useContext(UserContext);
-  const { setData } = useContext(DataContext);
-
-  async function getUserTransactions(userId) {
-    try {
-      const res = await transact.getUserTransactions(userId);
-      setData(res.data.data);
-    } catch (err) {
-      console.log('getUserTransactions', err);
-    }
-  }
-
-  const clickHandler = (user) => {
-    getUserTransactions(user.id);
-  };
 
   return (
     <nav className='navbar'>
       <h1 className='navName'>Personal Finance Tracker</h1>
       <div className='navItems'>
-        <NavLink
-          className='navCharts'
-          to='/charts'
-          onClick={() => (user ? clickHandler(user) : null)}
-        >
+        <NavLink className='navCharts' to='/charts'>
           Charts
         </NavLink>
         {!user && (

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
+import { DataContext } from '../../contexts/dataContext';
+import transact from '../../services/transactService';
 import axios from 'axios';
 import './addTransaction.css';
 
@@ -9,6 +11,7 @@ const AddTransaction = () => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const { user } = useContext(UserContext);
+  const { setData } = useContext(DataContext);
 
   const categories = [
     'Select A Category',
@@ -45,7 +48,18 @@ const AddTransaction = () => {
     setDate('');
     setAmount('');
     setCategory('');
+
+    getUserTransactions(user.id);
   };
+
+  async function getUserTransactions(userId) {
+    try {
+      const res = await transact.getUserTransactions(userId);
+      setData(res.data.data);
+    } catch (err) {
+      console.log('getUserTransactions', err);
+    }
+  }
 
   return (
     <div className='container addTransaction'>

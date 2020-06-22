@@ -6,8 +6,15 @@ const ListTransactions = () => {
   const { data } = useContext(DataContext);
   return (
     <div className='listContainer'>
-      {data === 'object' && data.length > 0 ? (
-        data.map((item) => <p key={item._id}>{item.transactionName}</p>)
+      {typeof data === 'object' && data.length > 0 ? (
+        data.map((item) => (
+          <li key={item._id}>
+            {item.date}
+            {item.category}
+            {item.transactionName}
+            {item.amount}
+          </li>
+        ))
       ) : (
         <p>Transaction Items</p>
       )}
