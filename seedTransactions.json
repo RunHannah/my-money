@@ -3,47 +3,41 @@
     "transactionName": "Department of Water and Power",
     "date": "01/02/2020",
     "category": "utilities",
-    "amount": "25"
+    "amount": "50"
   },
   {
     "transactionName": "Chipotle",
     "date": "02/02/2020",
     "category": "dining",
-    "amount": "50"
+    "amount": "20"
   },
   {
     "transactionName": "Chevron",
-    "date": "02/010/2020",
+    "date": "02/02/2020",
     "category": "gas",
     "amount": "30"
   },
   {
     "transactionName": "Kaiser Health",
-    "date": "02/02/2020",
+    "date": "03/02/2020",
     "category": "health",
     "amount": "500"
   },
   {
     "transactionName": "Forever 21",
-    "date": "05/30/2020",
+    "date": "04/30/2020",
     "category": "merchandise",
     "amount": "100"
   },
   {
-    "transactionName": "Kaiser Health",
-    "date": "03/02/2020",
-    "category": "health",
-    "amount": "100"
-  },
-  {
     "transactionName": "DMV",
-    "date": "02/02/2020",
+    "date": "04/10/2020",
     "category": "other services",
     "amount": "100"
   },
   {
     "transactionName": "Kaiser Health",
-    "date": "03/02/2020",
+    "date": "04/02/2020",
     "category": "health",
     "amount": "100"
   },
@@ -51,43 +45,43 @@
     "transactionName": "Target",
     "date": "5/1/20",
     "category": "Food",
-    "amount": "37.95"
+    "amount": "50"
   },
   {
     "transactionName": "Target",
-    "date": "4/27/20",
+    "date": "6/27/20",
     "category": "Food",
     "amount": "37.88"
   },
   {
     "transactionName": "Trader Joes",
-    "date": "4/21/20",
+    "date": "6/30/20",
     "category": "Food",
-    "amount": "119.89"
+    "amount": "60"
   },
   {
     "transactionName": "Etsy.com",
-    "date": "4/20/20",
+    "date": "7/20/20",
     "category": "Merchandise",
-    "amount": "24.48"
+    "amount": "100"
   },
   {
     "transactionName": "Gym",
-    "date": "4/18/20",
+    "date": "1/18/20",
     "category": "Other Services",
     "amount": "100"
   },
   {
-    "transactionName": "DMV",
-    "date": "4/18/20",
+    "transactionName": "Gym",
+    "date": "2/18/20",
     "category": "Other Services",
-    "amount": "37"
+    "amount": "100"
   },
   {
-    "transactionName": "Target",
-    "date": "4/16/20",
-    "category": "Food",
-    "amount": "19.07"
+    "transactionName": "Gym",
+    "date": "3/18/20",
+    "category": "Other Services",
+    "amount": "100"
   },
   {
     "transactionName": "Target",
@@ -97,49 +91,49 @@
   },
   {
     "transactionName": "Spectrum",
-    "date": "4/13/20",
+    "date": "8/13/20",
     "category": "Utilities",
     "amount": "49.99"
   },
   {
     "transactionName": "Target",
-    "date": "4/13/20",
+    "date": "9/13/20",
     "category": "Food",
     "amount": "65.94"
   },
   {
     "transactionName": "Amazon",
-    "date": "4/11/20",
+    "date": "10/11/20",
     "category": "Merchandise",
     "amount": "129.39"
   },
   {
     "transactionName": "Trader Joes",
-    "date": "4/8/20",
+    "date": "10/8/20",
     "category": "Food",
     "amount": "166.49"
   },
   {
     "transactionName": "Target",
-    "date": "4/2/20",
+    "date": "11/2/20",
     "category": "Merchandise",
     "amount": "84.51"
   },
   {
     "transactionName": "American Airlines",
-    "date": "4/2/20",
+    "date": "11/2/20",
     "category": "Travel",
     "amount": "284.51"
   },
   {
     "transactionName": "Hilton",
-    "date": "4/2/20",
+    "date": "12/2/20",
     "category": "Travel",
     "amount": "184.51"
   },
   {
     "transactionName": "Shell",
-    "date": "2/3/20",
+    "date": "12/3/20",
     "category": "Gas",
     "amount": "24"
   },
@@ -228,16 +222,16 @@
     "amount": "9.99"
   },
   {
-    "transactionName": "Daycare",
+    "transactionName": "Pet care",
     "date": "1/1/20",
     "category": "other services",
-    "amount": "400"
+    "amount": "100"
   },
   {
-    "transactionName": "Senior Living",
+    "transactionName": "Hair Salon",
     "date": "11/11/20",
     "category": "other services",
-    "amount": "5000"
+    "amount": "100"
   },
   {
     "transactionName": "76",
@@ -246,28 +240,16 @@
     "amount": "20"
   },
   {
-    "transactionName": "Daycare",
-    "date": "3/1/20",
-    "category": "other services",
-    "amount": "400"
-  },
-  {
-    "transactionName": "Senior Living",
-    "date": "6/11/20",
-    "category": "other services",
-    "amount": "5000"
-  },
-  {
     "transactionName": "76",
     "date": "8/19/20",
     "category": "gas",
     "amount": "20"
   },
   {
-    "transactionName": "Daycare",
+    "transactionName": "Dominos",
     "date": "1/1/20",
-    "category": "other services",
-    "amount": "400"
+    "category": "dining",
+    "amount": "100"
   },
   {
     "transactionName": "Vons",
