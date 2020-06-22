@@ -23,7 +23,6 @@ const AddTransaction = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('clicked');
     let transactionObj = {
       transactionName: '',
       date: '',

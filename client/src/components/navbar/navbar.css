@@ -4,10 +4,15 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin: 15px;
+  align-items: center;
 }
 
 .navName {
   font-size: 14px;
+}
+
+.navItems a {
+  text-decoration: none;
 }
 
 .navCharts,
