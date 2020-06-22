@@ -16,16 +16,13 @@ import './App.css';
 function App() {
   const [data, setData] = useState(null);
   const [user, setUser] = useState(null);
-
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   async function getTransactions() {
     try {
       const res = await transact.getTransactions();
       setData(res.data.data);
-    } catch (err) {
-      console.log('getTransactions', err);
-    }
+    } catch (err) {}
   }
 
   async function getUserTransactions(userId) {
@@ -37,24 +34,20 @@ function App() {
     }
   }
 
-  // update user
-  useEffect(() => {
-    const loggedUser = auth.getCurrentUser();
-    setUser(loggedUser);
-  }, []);
-
   // get default or user data
   useEffect(() => {
     if (user) {
       getUserTransactions(user.id);
-    } else {
-      getTransactions();
+    }
+    if (!user) {
+      const loggedUser = auth.getCurrentUser();
+      loggedUser ? setUser(loggedUser) : getTransactions();
     }
   }, [user]);
 
   return (
     <div className='App'>
-      <DataContext.Provider value={{ data }}>
+      <DataContext.Provider value={{ data, setData }}>
         <UserContext.Provider value={providerValue}>
           <NavBar />
           <Switch>

@@ -1,29 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../../contexts/dataContext';
 import auth from '../../services/authService';
 import './form.css';
 
 const LoginForm = (props) => {
+  const { setData } = useContext(DataContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const _isMounted = useRef(true);
 
   const clearFields = () => {
     setEmail('');
     setPassword('');
   };
 
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await auth.login(email, password);
       clearFields();
-      props.history.push('/');
+      setData(null);
+      props.history.push('/charts');
       window.location.reload();
     } catch (error) {
       // need to update

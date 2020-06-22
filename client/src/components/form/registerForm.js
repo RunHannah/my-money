@@ -1,25 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../../contexts/dataContext';
 import reg from '../../services/regService';
 import auth from '../../services/authService';
 import './form.css';
 
 function Register(props) {
+  const { setData } = useContext(DataContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const _isMounted = useRef(true);
 
   const clearFields = (props) => {
     setName('');
     setEmail('');
     setPassword('');
   };
-
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +23,7 @@ function Register(props) {
       const registeredUser = await reg.register(name, email, password);
       auth.loginWithJwt(registeredUser.data);
       clearFields();
+      setData(null);
       props.history.push('/');
       window.location.reload();
     } catch (error) {
