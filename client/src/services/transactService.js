@@ -20,7 +20,12 @@ export async function getUserTransactions(userId) {
   return await axios.get(`/api/transactions/user/${userId}`);
 }
 
+export async function deleteTransaction(id) {
+  return await axios.delete(`/api/transactions/${id}`);
+}
+
 export default {
   getTransactions,
   getUserTransactions,
+  deleteTransaction,
 };

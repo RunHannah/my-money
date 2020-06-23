@@ -17,7 +17,7 @@ exports.getTransactions = async (req, res, next) => {
 };
 
 exports.getOneTransaction = async (req, res, next) => {
-  await Transaction.findById({ _id: req.user.id })
+  await Transaction.findById({ _id: req.params.id })
     .then((transaction) => {
       res.status(200).json({ success: true, data: transaction });
     })
@@ -60,12 +60,14 @@ exports.createTransaction = async (req, res, next) => {
 };
 
 exports.updateOneTransaction = async (req, res, next) => {
-  await Transaction.findByIdAndUpdate({ _id: req.user.id }, req.body)
+  await Transaction.findByIdAndUpdate({ _id: req.params.id }, req.body)
     .then(async (updated) => {
       if (updated) {
-        await Transaction.findOne({ _id: req.user.id }).then((transaction) => {
-          res.status(200).json({ success: true, data: transaction });
-        });
+        await Transaction.findOne({ _id: req.params.id }).then(
+          (transaction) => {
+            res.status(200).json({ success: true, data: transaction });
+          }
+        );
       }
     })
     .catch(next);
@@ -73,7 +75,7 @@ exports.updateOneTransaction = async (req, res, next) => {
 
 exports.deleteTransaction = async (req, res, next) => {
   await Transaction.findByIdAndDelete({
-    _id: req.user.id,
+    _id: req.params.id,
   })
     .then((transaction) => {
       res.status(200).json({ success: true, data: transaction });
