@@ -1,12 +1,12 @@
 import React from 'react';
 import AddTransaction from './addTransaction';
-import ListTransactions from './listTransactions';
+import Table from '../table/table';
 
 const Transactions = () => {
   return (
-    <div>
+    <div className='transactions'>
       <AddTransaction />
-      <ListTransactions />
+      <Table />
     </div>
   );
 };
