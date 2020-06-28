@@ -16,6 +16,7 @@ const AddTransaction = () => {
   const { edit, setEdit } = useContext(EditDataContext);
 
   const categories = [
+    'Select A Category',
     'Dining',
     'Food',
     'Gas',
@@ -43,14 +44,29 @@ const AddTransaction = () => {
       newTransaction.userId = user.id;
     }
 
+    if (
+      newTransaction.category === 'Select A Category' ||
+      !newTransaction.category
+    ) {
+      alert('Please select a category');
+      return;
+    }
+
+    setTransactionName('');
+    setDate('');
+    setAmount('');
+    setCategory('');
+
+    submitRequest(newTransaction);
+  };
+
+  const submitRequest = async (newEntry) => {
     if (!edit) {
-      console.log('POST edit', edit);
-      await axios.post('/api/transactions', newTransaction);
+      await axios.post('/api/transactions', newEntry);
     }
 
     if (edit) {
-      console.log('PUT edit', edit);
-      const data = newTransaction;
+      const data = newEntry;
       const headers = {
         'Content-Type': 'application/json',
       };
@@ -59,11 +75,6 @@ const AddTransaction = () => {
       setEdit(null);
       console.log('Boolean(edit)', Boolean(edit));
     }
-
-    setTransactionName('');
-    setDate('');
-    setAmount('');
-    setCategory('');
 
     getUserTransactions(user.id);
   };
@@ -119,7 +130,6 @@ const AddTransaction = () => {
           onChange={(e) => setAmount(e.target.value)}
           required
         />
-        <label>Select A Category</label>
         <select
           name='category'
           value={category || ''}
