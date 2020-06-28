@@ -3,42 +3,24 @@
     "transactionName": "Department of Water and Power",
     "date": "01/02/2020",
     "category": "utilities",
-    "amount": "50"
+    "amount": "80"
   },
   {
     "transactionName": "Chipotle",
     "date": "02/02/2020",
     "category": "dining",
-    "amount": "20"
-  },
-  {
-    "transactionName": "Chevron",
-    "date": "02/02/2020",
-    "category": "gas",
-    "amount": "30"
+    "amount": "50"
   },
   {
     "transactionName": "Kaiser Health",
     "date": "03/02/2020",
     "category": "health",
-    "amount": "500"
-  },
-  {
-    "transactionName": "Forever 21",
-    "date": "04/30/2020",
-    "category": "merchandise",
-    "amount": "100"
+    "amount": "300"
   },
   {
     "transactionName": "DMV",
     "date": "04/10/2020",
     "category": "other services",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Kaiser Health",
-    "date": "04/02/2020",
-    "category": "health",
     "amount": "100"
   },
   {
@@ -48,76 +30,34 @@
     "amount": "50"
   },
   {
-    "transactionName": "Target",
-    "date": "6/27/20",
-    "category": "Food",
-    "amount": "37.88"
-  },
-  {
     "transactionName": "Trader Joes",
     "date": "6/30/20",
     "category": "Food",
-    "amount": "60"
+    "amount": "200"
   },
   {
-    "transactionName": "Etsy.com",
-    "date": "7/20/20",
-    "category": "Merchandise",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Gym",
-    "date": "1/18/20",
-    "category": "Other Services",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Gym",
-    "date": "2/18/20",
-    "category": "Other Services",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Gym",
-    "date": "3/18/20",
-    "category": "Other Services",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Target",
-    "date": "4/15/20",
-    "category": "Food",
-    "amount": "29.59"
+    "transactionName": "Chevron",
+    "date": "7/18/20",
+    "category": "Gas",
+    "amount": "40"
   },
   {
     "transactionName": "Spectrum",
     "date": "8/13/20",
     "category": "Utilities",
-    "amount": "49.99"
+    "amount": "100"
   },
   {
     "transactionName": "Target",
     "date": "9/13/20",
     "category": "Food",
-    "amount": "65.94"
+    "amount": "150"
   },
   {
-    "transactionName": "Amazon",
-    "date": "10/11/20",
+    "transactionName": "Bookstore",
+    "date": "10/1/20",
     "category": "Merchandise",
-    "amount": "129.39"
-  },
-  {
-    "transactionName": "Trader Joes",
-    "date": "10/8/20",
-    "category": "Food",
-    "amount": "166.49"
-  },
-  {
-    "transactionName": "Target",
-    "date": "11/2/20",
-    "category": "Merchandise",
-    "amount": "84.51"
+    "amount": "50.99"
   },
   {
     "transactionName": "American Airlines",
@@ -126,141 +66,9 @@
     "amount": "284.51"
   },
   {
-    "transactionName": "Hilton",
-    "date": "12/2/20",
-    "category": "Travel",
-    "amount": "184.51"
-  },
-  {
-    "transactionName": "Shell",
-    "date": "12/3/20",
-    "category": "Gas",
-    "amount": "24"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "1/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "2/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "3/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "5/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "6/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "7/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "8/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "9/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "10/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "11/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Spectrum",
-    "date": "12/13/20",
-    "category": "Utilities",
-    "amount": "49.99"
-  },
-  {
-    "transactionName": "Amazon",
-    "date": "2/13/20",
-    "category": "Merchandise",
-    "amount": "19.99"
-  },
-  {
-    "transactionName": "Bookstore",
-    "date": "8/13/20",
-    "category": "Merchandise",
-    "amount": "29.99"
-  },
-  {
-    "transactionName": "Bookstore",
-    "date": "10/1/20",
-    "category": "Merchandise",
-    "amount": "9.99"
-  },
-  {
     "transactionName": "Pet care",
-    "date": "1/1/20",
+    "date": "12/1/20",
     "category": "other services",
     "amount": "100"
-  },
-  {
-    "transactionName": "Hair Salon",
-    "date": "11/11/20",
-    "category": "other services",
-    "amount": "100"
-  },
-  {
-    "transactionName": "76",
-    "date": "9/19/20",
-    "category": "gas",
-    "amount": "20"
-  },
-  {
-    "transactionName": "76",
-    "date": "8/19/20",
-    "category": "gas",
-    "amount": "20"
-  },
-  {
-    "transactionName": "Dominos",
-    "date": "1/1/20",
-    "category": "dining",
-    "amount": "100"
-  },
-  {
-    "transactionName": "Vons",
-    "date": "6/11/20",
-    "category": "Food",
-    "amount": "50"
-  },
-  {
-    "transactionName": "76",
-    "date": "1/19/20",
-    "category": "gas",
-    "amount": "20"
   }
 ]
