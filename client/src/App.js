@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UserContext } from './contexts/userContext';
 import { DataContext } from './contexts/dataContext';
-import auth from './services/authService';
+import { EditDataContext } from './contexts/editDataContext';
 import Charts from './components/charts/charts';
 import NavBar from './components/navbar/navbar';
 import Register from './components/form/registerForm';
@@ -11,11 +11,13 @@ import Profile from './components/profile';
 import Logout from './components/logout';
 import Transactions from './components/transactions/transactions';
 import transact from './services/transactService';
+import auth from './services/authService';
 import './App.css';
 
 function App() {
   const [data, setData] = useState(null);
   const [user, setUser] = useState(null);
+  const [edit, setEdit] = useState(null);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   async function getTransactions() {
@@ -56,11 +58,13 @@ function App() {
             <Route path='/profile' component={Profile} />
             <Route path='/logout' component={Logout} />
             {data && (
-              <>
-                <Route path='/charts' component={Charts} />
-                <Route path='/transactions' component={Transactions} />
-                <Redirect from='/' exact to='/charts' />
-              </>
+              <EditDataContext.Provider value={{ edit, setEdit }}>
+                <>
+                  <Route path='/charts' component={Charts} />
+                  <Route path='/transactions' component={Transactions} />
+                  <Redirect from='/' exact to='/charts' />
+                </>
+              </EditDataContext.Provider>
             )}
           </Switch>
         </UserContext.Provider>

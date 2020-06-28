@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { DataContext } from '../../contexts/dataContext';
+import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
 import axios from 'axios';
 import './addTransaction.css';
@@ -12,9 +13,9 @@ const AddTransaction = () => {
   const [category, setCategory] = useState('');
   const { user } = useContext(UserContext);
   const { setData } = useContext(DataContext);
+  const { edit, setEdit } = useContext(EditDataContext);
 
   const categories = [
-    'Select A Category',
     'Dining',
     'Food',
     'Gas',
@@ -26,7 +27,7 @@ const AddTransaction = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let transactionObj = {
+    let newTransaction = {
       transactionName: '',
       date: '',
       amount: null,
@@ -35,13 +36,28 @@ const AddTransaction = () => {
     };
 
     if (user && transactionName && date && amount && category) {
-      transactionObj.transactionName = transactionName;
-      transactionObj.date = date;
-      transactionObj.amount = amount;
-      transactionObj.category = category;
-      transactionObj.userId = user.id;
+      newTransaction.transactionName = transactionName;
+      newTransaction.date = date;
+      newTransaction.amount = amount;
+      newTransaction.category = category;
+      newTransaction.userId = user.id;
+    }
 
-      await axios.post('/api/transactions', transactionObj);
+    if (!edit) {
+      console.log('POST edit', edit);
+      await axios.post('/api/transactions', newTransaction);
+    }
+
+    if (edit) {
+      console.log('PUT edit', edit);
+      const data = newTransaction;
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      await transact.editTransaction(edit[0]._id, data, headers);
+
+      setEdit(null);
+      console.log('Boolean(edit)', Boolean(edit));
     }
 
     setTransactionName('');
@@ -61,15 +77,26 @@ const AddTransaction = () => {
     }
   }
 
+  useEffect(() => {
+    if (edit) {
+      setTransactionName(edit[0].transactionName);
+      setDate(edit[0].date);
+      setAmount(edit[0].amount);
+      setCategory(edit[0].category);
+    }
+  }, [edit]);
+
   return (
     <div className='container addTransaction'>
       <form className='form' onSubmit={handleSubmit}>
-        <h1 className='formName'>Add a New Transaction</h1>
+        <h1 className='formName'>
+          {edit ? 'Edit Transaction' : 'Add New Transaction'}
+        </h1>
         <label>Transaction Name</label>
         <input
           type='text'
           name='transactionName'
-          value={transactionName}
+          value={transactionName || ''}
           placeholder='transaction'
           onChange={(e) => setTransactionName(e.target.value)}
           required
@@ -78,7 +105,7 @@ const AddTransaction = () => {
         <input
           type='date'
           name='date'
-          value={date}
+          value={date || ''}
           onChange={(e) => setDate(e.target.value)}
           required
         />
@@ -87,14 +114,15 @@ const AddTransaction = () => {
           type='number'
           name='amount'
           min='1'
-          value={amount}
+          value={amount || ''}
           placeholder='amount'
           onChange={(e) => setAmount(e.target.value)}
           required
         />
+        <label>Select A Category</label>
         <select
           name='category'
-          value={category}
+          value={category || ''}
           onChange={(e) => setCategory(e.target.value)}
         >
           {categories.map((category) => (

@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { DataContext } from '../../contexts/dataContext';
 import { UserContext } from '../../contexts/userContext';
+import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
+import Delete from './delete.png';
+import Edit from './edit.png';
 import './table.css';
 
-const TableBody = () => {
+const TableBody = (props) => {
   const { data, setData } = useContext(DataContext);
   const { user } = useContext(UserContext);
+  const { edit, setEdit } = useContext(EditDataContext);
 
   const remove = async (item) => {
     try {
@@ -19,6 +24,20 @@ const TableBody = () => {
     }
   };
 
+  const handleEdit = async (item) => {
+    const userTransactions = await transact.getUserTransactions(user.id);
+    const currentItem = userTransactions.data.data.filter(
+      (obj) => obj._id === item._id
+    );
+    setEdit(currentItem);
+  };
+
+  useEffect(() => {
+    if (edit) {
+      props.history.push('/transactions');
+    }
+  }, [edit]);
+
   return (
     <tbody>
       {data.map((item, index) => (
@@ -29,11 +48,16 @@ const TableBody = () => {
           <td key={item.category + index}>{item.category}</td>
           <td key={item.transactionName + index}>{item.transactionName}</td>
           <td key={item.amount + index}>{item.amount}</td>
-          <td onClick={() => remove(item)}>Remove</td>
+          <td onClick={() => handleEdit(item)}>
+            <img className='edit' src={Edit} alt='edit' />
+          </td>
+          <td onClick={() => remove(item)}>
+            <img className='delete' src={Delete} alt='delete' />
+          </td>
         </tr>
       ))}
     </tbody>
   );
 };
 
-export default TableBody;
+export default withRouter(TableBody);

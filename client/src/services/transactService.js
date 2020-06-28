@@ -24,8 +24,13 @@ export async function deleteTransaction(id) {
   return await axios.delete(`/api/transactions/${id}`);
 }
 
+export async function editTransaction(id, data, headers) {
+  return await axios.put(`/api/transactions/${id}`, data, headers);
+}
+
 export default {
   getTransactions,
   getUserTransactions,
   deleteTransaction,
+  editTransaction,
 };
