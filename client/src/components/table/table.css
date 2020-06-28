@@ -14,3 +14,16 @@
   padding: 0.75rem;
   border-top: 1px solid #dee2e6;
 }
+
+.delete {
+  width: 12px;
+}
+
+.edit {
+  width: 18px;
+}
+
+.delete:hover,
+.edit:hover {
+  cursor: pointer;
+}

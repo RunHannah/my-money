@@ -6,7 +6,14 @@ import './table.css';
 
 const Table = () => {
   const { data } = useContext(DataContext);
-  const columns = ['Date', 'Category', 'Transaction', 'Amount', 'Delete'];
+  const columns = [
+    'Date',
+    'Category',
+    'Transaction',
+    'Amount',
+    'Edit',
+    'Delete',
+  ];
 
   return (
     <table className='table'>
