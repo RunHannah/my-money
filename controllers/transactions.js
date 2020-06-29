@@ -45,10 +45,10 @@ exports.createTransaction = async (req, res, next) => {
   await transaction
     .save()
     .then((transaction) => {
-      User.findById({ _id: transaction.userId }, (err, user) => {
+      User.findById({ _id: transaction.userId }, async (err, user) => {
         if (user) {
           user.transactions.push(transaction);
-          user.save();
+          await user.save();
           res.json({ message: 'Transaction created!' });
         }
         if (!user) {
