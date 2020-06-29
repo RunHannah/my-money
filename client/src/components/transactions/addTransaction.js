@@ -91,7 +91,7 @@ const AddTransaction = () => {
   useEffect(() => {
     if (edit) {
       setTransactionName(edit[0].transactionName);
-      setDate(edit[0].date);
+      setDate(edit[0].date.split('T')[0]);
       setAmount(edit[0].amount);
       setCategory(edit[0].category);
     }
