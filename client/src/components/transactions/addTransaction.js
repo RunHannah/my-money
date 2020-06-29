@@ -76,7 +76,7 @@ const AddTransaction = () => {
       console.log('Boolean(edit)', Boolean(edit));
     }
 
-    getUserTransactions(user.id);
+    return getUserTransactions(user.id);
   };
 
   async function getUserTransactions(userId) {
