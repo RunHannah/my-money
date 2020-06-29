@@ -1,18 +1,76 @@
-.navbar {
-  height: auto;
+.navBar {
+  width: 100%;
+}
+
+.fullNav {
+  height: 0;
+}
+
+.navMenu {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 0;
+}
+
+.open {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  left: 0;
+  width: 50vw;
+  height: 400px;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  background: #218380;
+  transition: all 0.3s ease;
+}
+
+.openBtn,
+.closeBtn {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.closeBtn {
+  text-align: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+}
+
+.closed {
+  position: absolute;
+  top: 0;
+  width: 0vw;
+  overflow-x: hidden;
+  height: 400px;
+  transition: all 0.4s ease;
+}
+
+.navItems {
+  display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
-  margin: 15px;
   align-items: center;
 }
 
 .navName {
-  font-size: 14px;
+  font-size: 1.25rem;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .navItems a {
   text-decoration: none;
+  margin: 10px 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.navItems a:hover {
+  color: #a9a9a9;
 }
 
 .navCharts,
@@ -21,4 +79,38 @@
 .navProfile,
 .navLogout {
   margin: 0 15px;
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .openBtn,
+  .closeBtn {
+    display: none;
+  }
+
+  .navMenu {
+    padding: 10px 0;
+  }
+
+  .fullNav {
+    width: 40vw;
+    height: auto;
+  }
+
+  .navItems {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .navItems a {
+    color: #218380;
+    font-size: 1.2rem;
+  }
 }
