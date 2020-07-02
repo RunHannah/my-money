@@ -4,6 +4,7 @@
 
 .fullNav {
   height: 0;
+  width: 100%;
 }
 
 .navMenu {
@@ -19,13 +20,16 @@
   flex-direction: column;
   z-index: 1;
   left: 0;
-  width: 50vw;
+  width: 100%;
+  max-width: 50vw;
   height: 400px;
   opacity: 1;
   position: fixed;
   top: 0;
   background: #218380;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
+  transition: width 0.3s ease, max-width 0.3s ease, flex-direction 0.3s ease,
+    position 0.3s ease;
 }
 
 .openBtn,
@@ -42,12 +46,19 @@
 }
 
 .closed {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  left: 0;
+  width: 0%;
+  max-width: 0;
+  height: 400px;
+  opacity: 1;
   position: absolute;
   top: 0;
-  width: 0vw;
+  background: #218380;
   overflow-x: hidden;
-  height: 400px;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .navItems {
@@ -81,7 +92,7 @@
   margin: 0 15px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .desktopNav {
     width: 100%;
     display: flex;

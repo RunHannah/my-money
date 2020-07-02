@@ -6,7 +6,7 @@ import './navbar.css';
 const NavBar = () => {
   const { user } = useContext(UserContext);
   const [navStatus, setNavStatus] = useState('closed');
-  const sideNav = window.innerWidth < 768 ? 'sideNav' : 'desktopNav';
+  const sideNav = window.innerWidth < 1024 ? 'sideNav' : 'desktopNav';
 
   const openNav = () => setNavStatus('open');
   const closeNav = () => setNavStatus('closed');
