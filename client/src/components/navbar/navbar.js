@@ -45,28 +45,36 @@ const NavBar = () => {
           &times;
         </span>
         <div className='navItems'>
-          <NavLink className='navCharts' to='/charts'>
+          <NavLink className='navCharts' to='/charts' onClick={closeNav}>
             Charts
           </NavLink>
           {!user && (
             <React.Fragment>
-              <NavLink className='navLogin' to='/login'>
+              <NavLink className='navLogin' to='/login' onClick={closeNav}>
                 Login
               </NavLink>
-              <NavLink className='navRegister' to='/register'>
+              <NavLink
+                className='navRegister'
+                to='/register'
+                onClick={closeNav}
+              >
                 Register
               </NavLink>
             </React.Fragment>
           )}
           {user && (
             <React.Fragment>
-              <NavLink className='navProfile' to='/transactions'>
+              <NavLink
+                className='navProfile'
+                to='/transactions'
+                onClick={closeNav}
+              >
                 Transactions
               </NavLink>
-              <NavLink className='navProfile' to='/profile'>
+              <NavLink className='navProfile' to='/profile' onClick={closeNav}>
                 {user.name}
               </NavLink>
-              <NavLink className='navLogout' to='/logout'>
+              <NavLink className='navLogout' to='/logout' onClick={closeNav}>
                 Logout
               </NavLink>
             </React.Fragment>
