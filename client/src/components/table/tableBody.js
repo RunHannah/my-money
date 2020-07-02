@@ -4,8 +4,8 @@ import { DataContext } from '../../contexts/dataContext';
 import { UserContext } from '../../contexts/userContext';
 import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
-import Delete from './delete.png';
-import Edit from './edit.png';
+import Delete from '../../assets/images/delete.png';
+import Edit from '../../assets/images/edit.png';
 import './table.css';
 
 const TableBody = (props) => {
@@ -39,9 +39,9 @@ const TableBody = (props) => {
   }, [edit]);
 
   return (
-    <tbody>
+    <tbody className='tableBody'>
       {data.map((item, index) => (
-        <tr key={item._id}>
+        <tr className='tableBodyRow' key={item._id}>
           <td key={item.date + index}>
             {new Date(item.date).toLocaleDateString('en-US')}
           </td>

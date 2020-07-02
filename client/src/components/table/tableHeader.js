@@ -3,8 +3,8 @@ import './table.css';
 
 const TableHeader = (props) => {
   return (
-    <thead>
-      <tr>
+    <thead className='tableHead'>
+      <tr className='tableRow'>
         {props.columns.map((column, index) => (
           <th className={column} key={index}>
             {column}
