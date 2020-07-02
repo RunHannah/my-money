@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
 import './navbar.css';
@@ -11,8 +11,29 @@ const NavBar = () => {
   const openNav = () => setNavStatus('open');
   const closeNav = () => setNavStatus('closed');
 
+  const wrapperRef = useRef(null);
+
+  function useClickedOutside(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setNavStatus('closed');
+        }
+      }
+
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  useClickedOutside(wrapperRef);
+
   return (
-    <div className={`navbar ${sideNav}`}>
+    <div className={`navbar ${sideNav}`} ref={wrapperRef}>
       <div className='navMenu'>
         <span className='openBtn' onClick={openNav}>
           &#9776;
