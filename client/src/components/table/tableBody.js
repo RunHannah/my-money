@@ -6,6 +6,7 @@ import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
 import Delete from '../../assets/images/delete.png';
 import Edit from '../../assets/images/edit.png';
+import cleanDate from '../../utils/cleanDate';
 import './table.css';
 
 const TableBody = (props) => {
@@ -42,9 +43,7 @@ const TableBody = (props) => {
     <tbody className='tableBody'>
       {data.map((item, index) => (
         <tr className='tableBodyRow' key={item._id}>
-          <td key={item.date + index}>
-            {new Date(item.date).toLocaleDateString('en-US')}
-          </td>
+          <td key={item.date + index}>{cleanDate(item.date)}</td>
           <td key={item.category + index}>{item.category}</td>
           <td key={item.transactionName + index}>{item.transactionName}</td>
           <td key={item.amount + index}>{item.amount}</td>

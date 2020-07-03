@@ -3,6 +3,7 @@ import { UserContext } from '../../contexts/userContext';
 import { DataContext } from '../../contexts/dataContext';
 import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
+import cleanDate from '../../utils/cleanDate';
 import axios from 'axios';
 import './addTransaction.css';
 
@@ -18,7 +19,7 @@ const AddTransaction = () => {
   const categories = [
     'Select A Category',
     'Dining',
-    'Food',
+    'Groceries',
     'Gas',
     'Health',
     'Other Services',
@@ -57,7 +58,7 @@ const AddTransaction = () => {
     setAmount('');
     setCategory('');
 
-    submitRequest(newTransaction);
+    return submitRequest(newTransaction);
   };
 
   const submitRequest = async (newEntry) => {
@@ -90,8 +91,11 @@ const AddTransaction = () => {
 
   useEffect(() => {
     if (edit) {
+      const dateFormat = cleanDate(edit[0].date);
+
       setTransactionName(edit[0].transactionName);
-      setDate(edit[0].date.split('T')[0]);
+      setDate(dateFormat);
+      // setDate(edit[0].date.split('T')[0]);
       setAmount(edit[0].amount);
       setCategory(edit[0].category);
     }
