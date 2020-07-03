@@ -63,7 +63,7 @@ const AddTransaction = () => {
 
   const submitRequest = async (newEntry) => {
     if (!edit) {
-      await axios.post('/api/transactions', newEntry);
+      await transact.addNewTransaction(newEntry);
     }
 
     if (edit) {
@@ -72,7 +72,6 @@ const AddTransaction = () => {
         'Content-Type': 'application/json',
       };
       await transact.editTransaction(edit[0]._id, data, headers);
-
       setEdit(null);
       console.log('Boolean(edit)', Boolean(edit));
     }
@@ -95,7 +94,6 @@ const AddTransaction = () => {
 
       setTransactionName(edit[0].transactionName);
       setDate(dateFormat);
-      // setDate(edit[0].date.split('T')[0]);
       setAmount(edit[0].amount);
       setCategory(edit[0].category);
     }

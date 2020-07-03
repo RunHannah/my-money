@@ -20,6 +20,10 @@ export async function getUserTransactions(userId) {
   return await axios.get(`/api/transactions/user/${userId}`);
 }
 
+export async function addNewTransaction(item) {
+  return await axios.post('/api/transactions', item);
+}
+
 export async function deleteTransaction(id) {
   return await axios.delete(`/api/transactions/${id}`);
 }
@@ -31,6 +35,7 @@ export async function editTransaction(id, data, headers) {
 export default {
   getTransactions,
   getUserTransactions,
+  addNewTransaction,
   deleteTransaction,
   editTransaction,
 };

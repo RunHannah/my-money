@@ -6,7 +6,8 @@ import './navbar.css';
 const NavBar = () => {
   const { user } = useContext(UserContext);
   const [navStatus, setNavStatus] = useState('closed');
-  const sideNav = window.innerWidth < 1024 ? 'sideNav' : 'desktopNav';
+  const sideNav = window.innerWidth < 1024 ? 'sideNav' : '';
+  const desktopNav = window.innerWidth >= 1024 ? 'desktopNav' : '';
 
   const openNav = () => setNavStatus('open');
   const closeNav = () => setNavStatus('closed');
@@ -33,7 +34,7 @@ const NavBar = () => {
   useClickedOutside(wrapperRef);
 
   return (
-    <div className={`navbar ${sideNav}`} ref={wrapperRef}>
+    <div className={`navbar ${sideNav} ${desktopNav}`} ref={wrapperRef}>
       <div className='navMenu'>
         <span className='openBtn' onClick={openNav}>
           &#9776;
