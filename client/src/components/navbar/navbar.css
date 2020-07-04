@@ -74,7 +74,7 @@
 
 .navItems a {
   text-decoration: none;
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: 1.5rem;
   color: #fff;
 }
@@ -116,11 +116,12 @@
 
   .navItems {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: end;
   }
 
   .navItems a {
     color: #218380;
     font-size: 1.2rem;
+    margin: 0 20px;
   }
 }

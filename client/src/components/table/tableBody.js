@@ -37,7 +37,7 @@ const TableBody = (props) => {
     if (edit) {
       props.history.push('/transactions');
     }
-  }, [edit]);
+  }, [edit, props.history]);
 
   return (
     <tbody className='tableBody'>

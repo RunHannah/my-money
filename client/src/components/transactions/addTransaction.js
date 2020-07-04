@@ -4,7 +4,6 @@ import { DataContext } from '../../contexts/dataContext';
 import { EditDataContext } from '../../contexts/editDataContext';
 import transact from '../../services/transactService';
 import cleanDate from '../../utils/cleanDate';
-import axios from 'axios';
 import './addTransaction.css';
 
 const AddTransaction = () => {

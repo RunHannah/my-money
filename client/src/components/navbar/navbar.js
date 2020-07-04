@@ -39,7 +39,7 @@ const NavBar = () => {
         <span className='openBtn' onClick={openNav}>
           &#9776;
         </span>
-        <h1 className='navName'>Personal Finance Tracker</h1>
+        <h1 className='navName'>Money Tracker</h1>
       </div>
       <nav className={sideNav === 'sideNav' ? navStatus : 'fullNav'}>
         <span className='closeBtn' onClick={closeNav}>

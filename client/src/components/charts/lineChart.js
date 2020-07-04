@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import { Line } from 'react-chartjs-2';
 import './lineChart.css';
@@ -11,22 +11,22 @@ const LineChart = () => {
     return '$' + Number(value.toFixed(1)).toLocaleString();
   }
 
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const loadData = useCallback(() => {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
-  const loadData = (data) => {
     let totalMonth = {
       Jan: 0,
       Feb: 0,
@@ -63,11 +63,11 @@ const LineChart = () => {
         },
       ],
     });
-  };
+  }, [data]);
 
   useEffect(() => {
-    loadData(data);
-  }, [data]);
+    loadData();
+  }, [loadData]);
 
   return (
     <div className='lineChart'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import { Bar } from 'react-chartjs-2';
 import './barChart.css';
@@ -12,22 +12,22 @@ const BarChart = () => {
     return '$' + Number(value.toFixed(1)).toLocaleString();
   }
 
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const loadMonthData = useCallback(() => {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
-  const loadMonthData = (data) => {
     let totalMonth = {
       Jan: 0,
       Feb: 0,
@@ -77,9 +77,9 @@ const BarChart = () => {
         },
       ],
     });
-  };
+  }, [data]);
 
-  const loadCategoryData = (data) => {
+  const loadCategoryData = useCallback(() => {
     let categories = {};
     for (const dataObj of data) {
       let category = dataObj.category.toLowerCase();
@@ -114,15 +114,15 @@ const BarChart = () => {
         },
       ],
     });
-  };
-
-  useEffect(() => {
-    loadMonthData(data);
   }, [data]);
 
   useEffect(() => {
-    loadCategoryData(data);
-  }, [data]);
+    loadMonthData();
+  }, [loadMonthData]);
+
+  useEffect(() => {
+    loadCategoryData();
+  }, [loadCategoryData]);
 
   return (
     <div className='barCharts'>
