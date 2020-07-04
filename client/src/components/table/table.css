@@ -21,6 +21,11 @@
   width: 12px;
 }
 
+.disabled {
+  width: 12px;
+  cursor: not-allowed;
+}
+
 .edit {
   width: 18px;
 }

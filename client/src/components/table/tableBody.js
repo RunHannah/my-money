@@ -33,6 +33,8 @@ const TableBody = (props) => {
     setEdit(currentItem);
   };
 
+  const deleteStyle = () => (edit ? 'disabled' : 'delete');
+
   useEffect(() => {
     if (edit) {
       props.history.push('/transactions');
@@ -50,8 +52,8 @@ const TableBody = (props) => {
           <td onClick={() => handleEdit(item)}>
             <img className='edit' src={Edit} alt='edit' />
           </td>
-          <td onClick={() => remove(item)}>
-            <img className='delete' src={Delete} alt='delete' />
+          <td onClick={!edit ? () => remove(item) : null}>
+            <img className={deleteStyle()} src={Delete} alt='delete' />
           </td>
         </tr>
       ))}
