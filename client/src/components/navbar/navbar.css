@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding: 20px 0;
 }
 
@@ -33,7 +33,11 @@
 
 .openBtn,
 .closeBtn {
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.openBtn:hover,
+.closeBtn:hover {
   cursor: pointer;
 }
 
@@ -65,6 +69,19 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.logoName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.logo {
+  width: 15%;
+  height: 15%;
+  padding-right: 10px;
 }
 
 .navName {
@@ -116,12 +133,17 @@
 
   .navItems {
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .navItems a {
     color: #218380;
-    font-size: 1.2rem;
-    margin: 0 20px;
+    font-size: 1.1rem;
+    margin: 0 15px;
+  }
+
+  .logo {
+    width: 20%;
+    height: 20%;
   }
 }

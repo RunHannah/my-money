@@ -6,3 +6,17 @@ canvas {
   border: 1px solid #3e517a;
   margin-bottom: 40px;
 }
+
+.noData {
+  text-align: center;
+  text-decoration: none;
+  line-height: 2;
+}
+
+.addLink {
+  color: #000;
+  background-color: #fcc82b;
+  padding: 2px 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
+import Logo from '../../assets/images/logo.png';
 import './navbar.css';
 
 const NavBar = () => {
@@ -21,7 +22,6 @@ const NavBar = () => {
           setNavStatus('closed');
         }
       }
-
       // Bind the event listener
       document.addEventListener('mousedown', handleClickOutside);
       return () => {
@@ -39,7 +39,10 @@ const NavBar = () => {
         <span className='openBtn' onClick={openNav}>
           &#9776;
         </span>
-        <h1 className='navName'>Money Tracker</h1>
+        <span className='logoName'>
+          <img className='logo' src={Logo} alt='logo' />
+          <h1 className='navName'>Money Tracker</h1>
+        </span>
       </div>
       <nav className={sideNav === 'sideNav' ? navStatus : 'fullNav'}>
         <span className='closeBtn' onClick={closeNav}>
@@ -66,7 +69,7 @@ const NavBar = () => {
           {user && (
             <React.Fragment>
               <NavLink
-                className='navProfile'
+                className='navTransaction'
                 to='/transactions'
                 onClick={closeNav}
               >
