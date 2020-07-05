@@ -17,6 +17,6 @@ input:invalid {
 
 @media (min-width: 1024px) {
   .App {
-    max-width: 65vw;
+    max-width: 90vw;
   }
 }

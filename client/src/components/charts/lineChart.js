@@ -70,9 +70,8 @@ const LineChart = () => {
   }, [loadData]);
 
   return (
-    <div className='lineChart'>
-      <h1>Line Chart</h1>
-      <div>
+    <div className='lineCharts'>
+      <div className='lineChart'>
         <Line
           data={lineData}
           options={{

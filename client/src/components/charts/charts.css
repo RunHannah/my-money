@@ -5,6 +5,7 @@
 canvas {
   border: 1px solid #3e517a;
   margin-bottom: 40px;
+  width: 100% !important;
 }
 
 .noData {
@@ -19,4 +20,11 @@ canvas {
   padding: 2px 5px;
   border-radius: 5px;
   text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .charts {
+    display: flex;
+    flex-direction: row;
+  }
 }

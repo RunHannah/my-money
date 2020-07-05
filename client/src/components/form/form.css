@@ -49,3 +49,9 @@ button:hover {
     font-size: 2rem;
   }
 }
+
+@media (min-width: 1024px) {
+  .container {
+    width: 50vw;
+  }
+}

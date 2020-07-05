@@ -1,4 +1,11 @@
-.lineChart {
+.lineCharts {
   margin: 0 auto;
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .lineCharts {
+    width: 50%;
+    margin: 0 10px;
+  }
 }

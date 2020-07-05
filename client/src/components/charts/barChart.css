@@ -11,3 +11,10 @@
   position: relative;
   width: 100%;
 }
+
+@media (min-width: 1024px) {
+  .barCharts {
+    width: 50%;
+    margin: 0 10px;
+  }
+}
