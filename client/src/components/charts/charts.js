@@ -7,7 +7,6 @@ import './charts.css';
 
 const Charts = () => {
   const { data } = useContext(DataContext);
-  console.log('data', data);
   return (
     <div className='charts'>
       {typeof data === 'object' ? (

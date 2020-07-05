@@ -4,11 +4,22 @@ import { UserContext } from '../../contexts/userContext';
 import Logo from '../../assets/images/logo.png';
 import './navbar.css';
 
+function debounce(fn, ms) {
+  let timer;
+  return (_) => {
+    clearTimeout(timer);
+    timer = setTimeout((_) => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  };
+}
+
 const NavBar = () => {
   const { user } = useContext(UserContext);
   const [navStatus, setNavStatus] = useState('closed');
-  const sideNav = window.innerWidth < 1024 ? 'sideNav' : '';
-  const desktopNav = window.innerWidth >= 1024 ? 'desktopNav' : '';
+  const [width, setWidth] = useState(window.innerWidth);
+  const [deviceType, setDeviceType] = useState('');
 
   const openNav = () => setNavStatus('open');
   const closeNav = () => setNavStatus('closed');
@@ -24,6 +35,7 @@ const NavBar = () => {
       }
       // Bind the event listener
       document.addEventListener('mousedown', handleClickOutside);
+
       return () => {
         // Unbind the event listener on clean up
         document.removeEventListener('mousedown', handleClickOutside);
@@ -33,8 +45,27 @@ const NavBar = () => {
 
   useClickedOutside(wrapperRef);
 
+  useEffect(() => {
+    const handleResize = debounce(() => setWidth(window.innerWidth), 100);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (width < 1024) {
+      setDeviceType('isMobile');
+    }
+    if (width >= 1024) {
+      setDeviceType('isDesktop');
+    }
+  }, [width]);
+
   return (
-    <div className={`navbar ${sideNav} ${desktopNav}`} ref={wrapperRef}>
+    <div className={`navbar ${deviceType}`} ref={wrapperRef}>
       <div className='navMenu'>
         <span className='openBtn' onClick={openNav}>
           &#9776;
@@ -44,7 +75,7 @@ const NavBar = () => {
           <h1 className='navName'>Money Tracker</h1>
         </span>
       </div>
-      <nav className={sideNav === 'sideNav' ? navStatus : 'fullNav'}>
+      <nav className={deviceType === 'isMobile' ? navStatus : 'fullNav'}>
         <span className='closeBtn' onClick={closeNav}>
           &times;
         </span>
