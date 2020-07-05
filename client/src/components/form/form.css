@@ -44,12 +44,6 @@ button:hover {
   background: #70cad1;
 }
 
-@media (min-width: 768px) {
-  .formName {
-    font-size: 2rem;
-  }
-}
-
 @media (min-width: 1024px) {
   .container {
     width: 50vw;

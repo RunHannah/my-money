@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { DataContext } from '../../contexts/dataContext';
 import { UserContext } from '../../contexts/userContext';
 import { EditDataContext } from '../../contexts/editDataContext';
+import sortBy from 'lodash/sortBy';
 import transact from '../../services/transactService';
 import Delete from '../../assets/images/delete.png';
 import Edit from '../../assets/images/edit.png';
@@ -43,7 +44,7 @@ const TableBody = (props) => {
 
   return (
     <tbody className='tableBody'>
-      {data.map((item, index) => (
+      {sortBy(data, 'date').map((item, index) => (
         <tr className='tableBodyRow' key={item._id}>
           <td key={item.date + index}>{cleanDate(item.date)}</td>
           <td key={item.category + index}>{item.category}</td>

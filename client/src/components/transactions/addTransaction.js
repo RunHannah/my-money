@@ -113,10 +113,12 @@ const AddTransaction = () => {
           onChange={(e) => setTransactionName(e.target.value)}
           required
         />
-        <label>Date</label>
+        <label>Date (2020 calendar year)</label>
         <input
           type='date'
           name='date'
+          min='2020-01-01'
+          max='2020-12-31'
           value={date || ''}
           onChange={(e) => setDate(e.target.value)}
           required
