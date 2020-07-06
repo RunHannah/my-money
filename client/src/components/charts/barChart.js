@@ -80,13 +80,20 @@ const BarChart = () => {
   }, [data]);
 
   const loadCategoryData = useCallback(() => {
-    let categories = {};
+    let categories = {
+      Dining: 0,
+      Groceries: 0,
+      Health: 0,
+      Other: 0,
+      Transport: 0,
+      Travel: 0,
+      Utilities: 0,
+    };
+
     for (const dataObj of data) {
       let category = dataObj.category.toLowerCase();
       category = category.charAt(0).toUpperCase() + category.slice(1);
       let amount = parseInt(dataObj.amount);
-
-      categories[category] = 0;
 
       if (category in categories) {
         categories[category] += amount;
