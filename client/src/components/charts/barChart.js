@@ -56,23 +56,23 @@ const BarChart = () => {
       labels: Object.keys(totalMonth),
       datasets: [
         {
-          label: 'transactions',
+          label: 'Total by Month',
           data: Object.values(totalMonth),
           backgroundColor: [
-            'rgba(1255, 242, 117)',
-            'rgba(255, 140, 66)',
-            'rgba(255, 60, 56)',
-            'rgba(215, 205, 204',
-            'rgba(105, 220, 158)',
-            'rgba(0, 167, 225)',
-            'rgba(201, 10, 225)',
-            'rgba(100, 93, 215)',
-            'rgba(1255, 242, 117)',
-            'rgba(255, 140, 66)',
-            'rgba(255, 60, 56)',
-            'rgba(162, 62, 72)',
+            '#7D387D',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
+            '#7D387D',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
+            '#7D387D',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
           ],
-          borderColor: 'rgb(108, 142, 173)',
+          borderColor: '#CBCBD4',
           borderWidth: 2,
         },
       ],
@@ -97,19 +97,19 @@ const BarChart = () => {
       labels: Object.keys(categories),
       datasets: [
         {
-          label: 'transactions',
+          label: 'Total by Category',
           data: Object.values(categories),
           backgroundColor: [
-            'rgba(1255, 242, 117)',
-            'rgba(255, 140, 66)',
-            'rgba(255, 60, 56)',
-            'rgba(215, 205, 204',
-            'rgba(105, 220, 158)',
-            'rgba(0, 167, 225)',
-            'rgba(201, 10, 225)',
-            'rgba(100, 93, 215)',
+            '#7D387D',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
+            '#7D387D',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
           ],
-          borderColor: 'rgb(108, 142, 173)',
+          borderColor: '#CBCBD4',
           borderWidth: 2,
         },
       ],
@@ -131,7 +131,7 @@ const BarChart = () => {
           data={barMonthData}
           options={{
             responsive: true,
-            title: { text: 'Year Expenses', display: true },
+            title: { text: '2020 Expenses', display: true },
             scales: {
               yAxes: [
                 {
@@ -162,7 +162,7 @@ const BarChart = () => {
           data={barCategoryData}
           options={{
             responsive: true,
-            title: { text: 'Year Expenses', display: true },
+            title: { text: '2020 Expenses', display: true },
             scales: {
               yAxes: [
                 {

@@ -19,9 +19,9 @@ const AddTransaction = () => {
     'Select A Category',
     'Dining',
     'Groceries',
-    'Gas',
     'Health',
-    'Other Services',
+    'Other',
+    'Transport',
     'Travel',
     'Utilities',
   ];

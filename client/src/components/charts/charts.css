@@ -12,6 +12,7 @@ canvas {
   text-align: center;
   text-decoration: none;
   line-height: 2;
+  margin: 0 auto;
 }
 
 .addLink {

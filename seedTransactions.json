@@ -20,25 +20,25 @@
   {
     "transactionName": "DMV",
     "date": "04/10/2020",
-    "category": "other services",
+    "category": "other",
     "amount": "100"
   },
   {
     "transactionName": "Target",
     "date": "5/1/20",
-    "category": "Food",
+    "category": "Groceries",
     "amount": "50"
   },
   {
     "transactionName": "Trader Joes",
     "date": "6/30/20",
-    "category": "Food",
+    "category": "Groceries",
     "amount": "200"
   },
   {
     "transactionName": "Chevron",
     "date": "7/18/20",
-    "category": "Gas",
+    "category": "Transport",
     "amount": "40"
   },
   {
@@ -50,7 +50,7 @@
   {
     "transactionName": "Target",
     "date": "9/13/20",
-    "category": "Food",
+    "category": "Groceries",
     "amount": "150"
   },
   {
@@ -68,7 +68,7 @@
   {
     "transactionName": "Pet care",
     "date": "12/1/20",
-    "category": "other services",
+    "category": "other",
     "amount": "100"
   }
 ]

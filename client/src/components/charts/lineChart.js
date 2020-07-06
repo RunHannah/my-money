@@ -55,10 +55,10 @@ const LineChart = () => {
       labels: Object.keys(totalMonth),
       datasets: [
         {
-          label: 'transactions',
+          label: 'Total by Month',
           data: Object.values(totalMonth),
-          backgroundColor: ['rgba(105, 220, 158)'],
-          borderColor: 'rgb(108, 142, 173)',
+          backgroundColor: ['#CBCBD4'],
+          borderColor: '#FFC71F',
           borderWidth: 2,
         },
       ],
@@ -76,7 +76,7 @@ const LineChart = () => {
           data={lineData}
           options={{
             responsive: true,
-            title: { text: 'Year Expenses', display: true },
+            title: { text: '2020 Expenses', display: true },
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
             scales: {
               yAxes: [
