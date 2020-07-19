@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import { Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import './barChart.css';
 
 const BarChart = () => {
@@ -123,6 +124,66 @@ const BarChart = () => {
     });
   }, [data]);
 
+  const barStyle = {
+    responsive: true,
+    title: {
+      text: '2020 Year Expenses',
+      display: true,
+      fontSize: 15,
+      padding: 20,
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 10,
+            beginAtZero: true,
+            callback: function (value, index, values) {
+              return changeToDollar(value);
+            },
+            fontSize: 12,
+          },
+          gridLines: {
+            display: true,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
+    },
+    layout: {
+      padding: {
+        left: 10,
+        right: 10,
+        top: 0,
+        bottom: 10,
+      },
+    },
+    legend: {
+      display: false,
+    },
+    plugins: {
+      datalabels: {
+        color: '#000',
+        anchor: 'end',
+        align: 'end',
+        offset: -5,
+        font: {
+          size: 14,
+        },
+        formatter: function (value) {
+          return '$' + value;
+        },
+      },
+    },
+  };
+
   useEffect(() => {
     loadMonthData();
   }, [loadMonthData]);
@@ -134,68 +195,8 @@ const BarChart = () => {
   return (
     <div className='barCharts'>
       <div className='barChart'>
-        <Bar
-          data={barMonthData}
-          options={{
-            responsive: true,
-            title: { text: '2020 Expenses', display: true },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 10,
-                    beginAtZero: true,
-                    callback: function (value, index, values) {
-                      return changeToDollar(value);
-                    },
-                  },
-                  gridLines: {
-                    display: true,
-                  },
-                },
-              ],
-              xAxes: [
-                {
-                  gridLines: {
-                    display: false,
-                  },
-                },
-              ],
-            },
-          }}
-        />
-        <Bar
-          data={barCategoryData}
-          options={{
-            responsive: true,
-            title: { text: '2020 Expenses', display: true },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 10,
-                    beginAtZero: true,
-                    callback: function (value, index, values) {
-                      return changeToDollar(value);
-                    },
-                  },
-                  gridLines: {
-                    display: true,
-                  },
-                },
-              ],
-              xAxes: [
-                {
-                  gridLines: {
-                    display: false,
-                  },
-                },
-              ],
-            },
-          }}
-        />
+        <Bar data={barMonthData} options={barStyle} />
+        <Bar data={barCategoryData} options={barStyle} />
       </div>
     </div>
   );
