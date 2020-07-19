@@ -5,6 +5,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import './barChart.css';
 
 const BarChart = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const { data } = useContext(DataContext);
   const [barMonthData, setBarMonthData] = useState({});
   const [barCategoryData, setBarCategoryData] = useState({});
@@ -124,7 +127,7 @@ const BarChart = () => {
     });
   }, [data]);
 
-  const barStyle = {
+  const barDesktopStyle = {
     responsive: true,
     title: {
       text: '2020 Year Expenses',
@@ -184,6 +187,66 @@ const BarChart = () => {
     },
   };
 
+  const barMobileStyle = {
+    responsive: true,
+    title: {
+      text: '2020 Year Expenses',
+      display: true,
+      fontSize: 12,
+      padding: 12,
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 5,
+            beginAtZero: true,
+            callback: function (value) {
+              return changeToDollar(value);
+            },
+            fontSize: 10,
+          },
+          gridLines: {
+            display: true,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
+    },
+    layout: {
+      padding: {
+        left: 5,
+        right: 5,
+        top: 0,
+        bottom: 5,
+      },
+    },
+    legend: {
+      display: false,
+    },
+    plugins: {
+      datalabels: {
+        color: '#000',
+        anchor: 'end',
+        align: 'end',
+        offset: -5,
+        font: {
+          size: 10,
+        },
+        formatter: function (value) {
+          return '$' + value;
+        },
+      },
+    },
+  };
+
   useEffect(() => {
     loadMonthData();
   }, [loadMonthData]);
@@ -192,11 +255,27 @@ const BarChart = () => {
     loadCategoryData();
   }, [loadCategoryData]);
 
+  useEffect(() => {
+    if (window.innerWidth > 769) {
+      setIsDesktop(true);
+      setIsMobile(false);
+    } else {
+      setIsMobile(true);
+      setIsDesktop(false);
+    }
+  }, []);
+
   return (
     <div className='barCharts'>
       <div className='barChart'>
-        <Bar data={barMonthData} options={barStyle} />
-        <Bar data={barCategoryData} options={barStyle} />
+        <Bar
+          data={barMonthData}
+          options={isMobile ? barMobileStyle : barDesktopStyle}
+        />
+        <Bar
+          data={barCategoryData}
+          options={isMobile ? barMobileStyle : barDesktopStyle}
+        />
       </div>
     </div>
   );
