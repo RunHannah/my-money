@@ -2,7 +2,7 @@ import React, { useContext, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { DataContext } from '../../contexts/dataContext';
 import BarChart from './barChart';
-import LineChart from './lineChart';
+import PieChart from './pieChart';
 import './charts.css';
 
 const Charts = () => {
@@ -12,7 +12,7 @@ const Charts = () => {
       {typeof data === 'object' ? (
         <Fragment>
           <BarChart />
-          <LineChart />
+          <PieChart />
         </Fragment>
       ) : (
         <p className='noData'>
