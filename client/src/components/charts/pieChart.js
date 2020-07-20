@@ -5,75 +5,24 @@ import './pieChart.css';
 
 const LineChart = () => {
   const { data } = useContext(DataContext);
-  const [pieMonthData, setPieMonthData] = useState({});
+  const [pieMonthCatData, setPieMonthCatData] = useState({});
   const [pieCategoryData, setPieCategoryData] = useState({});
+  const [month, setMonth] = useState('January');
 
-  const loadData = useCallback(() => {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-
-    let totalMonth = {
-      Jan: 0,
-      Feb: 0,
-      Mar: 0,
-      Apr: 0,
-      May: 0,
-      Jun: 0,
-      Jul: 0,
-      Aug: 0,
-      Sep: 0,
-      Oct: 0,
-      Nov: 0,
-      Dec: 0,
-    };
-
-    for (const dataObj of data) {
-      let month = months[new Date(dataObj.date).getMonth()];
-      let amount = parseInt(dataObj.amount);
-
-      if (month in totalMonth) {
-        totalMonth[month] += amount;
-      }
-    }
-
-    setPieMonthData({
-      labels: Object.keys(totalMonth),
-      datasets: [
-        {
-          label: 'Total by Month',
-          data: Object.values(totalMonth),
-          backgroundColor: [
-            '#7D387D',
-            '#DF2935',
-            '#FFC71F',
-            '#009FB7',
-            '#FFC1CF',
-            '#32533D',
-            '#CB#AA6',
-            '#C94277',
-            '#3B60E4',
-            '#95190C',
-            '#F1F0CC',
-            '#688B58',
-          ],
-          borderColor: '#CBCBD4',
-          borderWidth: 2,
-        },
-      ],
-    });
-  }, [data]);
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   const loadCategoryData = useCallback(() => {
     let categories = {
@@ -103,13 +52,13 @@ const LineChart = () => {
           label: 'Total by Category',
           data: Object.values(categories),
           backgroundColor: [
-            '#7D387D',
+            '#7E55B4',
             '#DF2935',
             '#FFC71F',
             '#009FB7',
             '#FFC1CF',
-            '#32533D',
-            '#CB#AA6',
+            '#2CCC00',
+            '#FFFECB',
           ],
           borderColor: '#CBCBD4',
           borderWidth: 2,
@@ -118,9 +67,65 @@ const LineChart = () => {
     });
   }, [data]);
 
+  const loadCatMonthData = useCallback(
+    (month) => {
+      let categories = {
+        Dining: null,
+        Groceries: null,
+        Health: null,
+        Other: null,
+        Transport: null,
+        Travel: null,
+        Utilities: null,
+      };
+
+      for (const dataObj of data) {
+        const monthInt = parseInt(dataObj.date.split('-')[1]) - 1;
+        const dataObjMonth = months[monthInt];
+
+        if (dataObjMonth === month) {
+          let category = dataObj.category.toLowerCase();
+          category = category.charAt(0).toUpperCase() + category.slice(1);
+
+          let amount = parseInt(dataObj.amount);
+
+          if (category in categories) {
+            categories[category] += amount;
+          }
+        }
+      }
+
+      setPieMonthCatData({
+        labels: Object.keys(categories),
+        datasets: [
+          {
+            label: 'Total by Category',
+            data: Object.values(categories),
+            backgroundColor: [
+              '#7E55B4',
+              '#DF2935',
+              '#FFC71F',
+              '#009FB7',
+              '#FFC1CF',
+              '#2CCC00',
+              '#FFFECB',
+            ],
+            borderColor: '#CBCBD4',
+            borderWidth: 2,
+          },
+        ],
+      });
+    },
+    [data]
+  );
+
+  const handleSubmit = (e) => {
+    setMonth(e.target.value);
+  };
+
   useEffect(() => {
-    loadData();
-  }, [loadData]);
+    loadCatMonthData(month);
+  }, [loadCatMonthData, month]);
 
   useEffect(() => {
     loadCategoryData();
@@ -129,20 +134,79 @@ const LineChart = () => {
   return (
     <div className='pieCharts'>
       <div className='pieChart'>
-        <Doughnut
-          data={pieMonthData}
-          options={{
-            responsive: true,
-            title: { text: '2020 Expenses', display: true },
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          }}
-        />
+        <div className='pieCatMonth'>
+          <form className='form' onChange={handleSubmit}>
+            <label>Filter spending by month</label>
+            <select
+              name='month'
+              value={month || ''}
+              onChange={(e) => setMonth(e.target.value)}
+            >
+              {months.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </form>
+          <Doughnut
+            data={pieMonthCatData}
+            options={{
+              responsive: true,
+              title: {
+                text: `2020 Spending for ${month}`,
+                display: true,
+                fontSize: 15,
+                padding: 20,
+              },
+              backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              legend: {
+                position: 'left',
+              },
+              layout: {
+                padding: {
+                  left: 10,
+                  right: 10,
+                  top: 0,
+                  bottom: 10,
+                },
+              },
+              plugins: {
+                datalabels: {
+                  color: '#000',
+                },
+              },
+              inGraphDataTmpl: "<%=(v6 > 0 ? v6+' %' : ' ')%>",
+            }}
+          />
+        </div>
         <Doughnut
           data={pieCategoryData}
           options={{
             responsive: true,
-            title: { text: '2020 Expenses', display: true },
+            title: {
+              text: '2020 Spending by Category',
+              display: true,
+              fontSize: 15,
+              padding: 20,
+            },
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            legend: {
+              position: 'left',
+            },
+            layout: {
+              padding: {
+                left: 10,
+                right: 10,
+                top: 0,
+                bottom: 10,
+              },
+            },
+            plugins: {
+              datalabels: {
+                color: '#000',
+              },
+            },
           }}
         />
       </div>
