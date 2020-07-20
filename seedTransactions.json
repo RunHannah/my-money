@@ -2,61 +2,97 @@
   {
     "transactionName": "Department of Water and Power",
     "date": "01/02/2020",
-    "category": "utilities",
+    "category": "home",
     "amount": "80"
+  },
+  {
+    "transactionName": "Dennys",
+    "date": "01/12/2020",
+    "category": "food",
+    "amount": "40"
+  },
+  {
+    "transactionName": "Bookstore",
+    "date": "01/1/20",
+    "category": "Other",
+    "amount": "25"
   },
   {
     "transactionName": "Chipotle",
     "date": "02/02/2020",
-    "category": "dining",
+    "category": "food",
     "amount": "50"
+  },
+  {
+    "transactionName": "Chevron",
+    "date": "02/22/2020",
+    "category": "auto",
+    "amount": "25"
+  },
+  {
+    "transactionName": "Trader Joes",
+    "date": "2/30/20",
+    "category": "food",
+    "amount": "70"
   },
   {
     "transactionName": "Kaiser Health",
     "date": "03/02/2020",
     "category": "health",
-    "amount": "300"
+    "amount": "150"
+  },
+  {
+    "transactionName": "Southwest Airlines",
+    "date": "03/10/2020",
+    "category": "travel",
+    "amount": "100"
   },
   {
     "transactionName": "DMV",
     "date": "04/10/2020",
-    "category": "other",
+    "category": "auto",
     "amount": "100"
+  },
+  {
+    "transactionName": "Netflix",
+    "date": "04/30/2020",
+    "category": "other",
+    "amount": "20"
   },
   {
     "transactionName": "Target",
     "date": "5/1/20",
-    "category": "Groceries",
+    "category": "food",
     "amount": "50"
   },
   {
     "transactionName": "Trader Joes",
     "date": "6/30/20",
-    "category": "Groceries",
+    "category": "food",
     "amount": "200"
   },
   {
     "transactionName": "Chevron",
     "date": "7/18/20",
-    "category": "Transport",
+    "category": "auto",
     "amount": "40"
   },
   {
     "transactionName": "Spectrum",
     "date": "8/13/20",
-    "category": "Utilities",
+    "category": "home",
     "amount": "100"
   },
   {
-    "transactionName": "Target",
+    "transactionName": "Hollywood Bowl",
     "date": "9/13/20",
-    "category": "Groceries",
+    "category": "entertainment",
     "amount": "150"
   },
   {
     "transactionName": "Bookstore",
     "date": "10/1/20",
-    "category": "Merchandise",
+    "category": "Other",
     "amount": "50.99"
   },
   {

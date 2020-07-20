@@ -85,13 +85,13 @@ const BarChart = () => {
 
   const loadCategoryData = useCallback(() => {
     let categories = {
-      Dining: 0,
-      Groceries: 0,
+      Food: 0,
+      Entertainment: 0,
       Health: 0,
       Other: 0,
-      Transport: 0,
+      Auto: 0,
       Travel: 0,
-      Utilities: 0,
+      Home: 0,
     };
 
     for (const dataObj of data) {

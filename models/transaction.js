@@ -16,7 +16,7 @@ const TransactionSchema = new Schema({
   },
   category: {
     type: String,
-    default: 'Dining',
+    default: 'Food',
   },
   amount: {
     type: Number,

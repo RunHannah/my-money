@@ -17,13 +17,13 @@ const AddTransaction = () => {
 
   const categories = [
     'Select A Category',
-    'Dining',
-    'Groceries',
+    'Food',
+    'Entertainment',
     'Health',
     'Other',
-    'Transport',
+    'Auto',
     'Travel',
-    'Utilities',
+    'Home',
   ];
 
   const handleSubmit = async (e) => {
