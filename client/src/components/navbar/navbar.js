@@ -72,7 +72,7 @@ const NavBar = () => {
         </span>
         <span className='logoName'>
           <img className='logo' src={Logo} alt='logo' />
-          <h1 className='navName'>Money Tracker</h1>
+          <h1 className='navName'>MyMoney</h1>
         </span>
       </div>
       <nav className={deviceType === 'isMobile' ? navStatus : 'fullNav'}>

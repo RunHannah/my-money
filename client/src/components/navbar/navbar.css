@@ -26,7 +26,7 @@
   opacity: 1;
   position: fixed;
   top: 0;
-  background: #218380;
+  background: #009fb7;
   transition: width 0.3s ease, max-width 0.3s ease, flex-direction 0.3s ease,
     position 0.3s ease;
 }
@@ -59,7 +59,7 @@
   opacity: 1;
   position: absolute;
   top: 0;
-  background: #218380;
+  background: #009fb7;
   overflow-x: hidden;
   transition: all 0.3s ease;
 }
@@ -84,7 +84,7 @@
 
 .navName {
   font-size: 1.25rem;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Open Sans Light';
 }
 
 .navItems a {
@@ -92,6 +92,7 @@
   margin: 20px 0;
   font-size: 1.5rem;
   color: #fff;
+  font-weight: 700;
 }
 
 .navItems a:hover {
@@ -135,7 +136,7 @@
   }
 
   .navItems a {
-    color: #218380;
+    color: #009fb7;
     font-size: 1.1rem;
     margin: 0 15px;
   }
