@@ -48,7 +48,7 @@ const TableBody = (props) => {
         <tr className='tableBodyRow' key={item._id}>
           <td key={item.date + index}>{cleanDate(item.date)}</td>
           <td key={item.category + index}>{item.category}</td>
-          <td key={item.transactionName + index}>{item.transactionName}</td>
+          <td key={item.description + index}>{item.description}</td>
           <td key={item.amount + index}>{item.amount}</td>
           <td onClick={() => handleEdit(item)}>
             <img className='edit' src={Edit} alt='edit' />

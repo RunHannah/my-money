@@ -5,7 +5,7 @@ const seedTransactions = require('../seedTransactions.json');
 const createTransactions = () => {
   seedTransactions.map(async (obj) => {
     let transaction = new Transaction({
-      transactionName: `${obj.transactionName}`,
+      description: `${obj.description}`,
       date: `${obj.date}`,
       category: `${obj.category}`,
       amount: `${obj.amount}`,

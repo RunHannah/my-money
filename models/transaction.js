@@ -6,9 +6,9 @@ const TransactionSchema = new Schema({
     type: String,
     default: 'everyone',
   },
-  transactionName: {
+  description: {
     type: String,
-    required: [true, 'Name field is required'],
+    required: [true, 'description is required'],
   },
   date: {
     type: Date,

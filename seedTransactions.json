@@ -1,108 +1,108 @@
 [
   {
-    "transactionName": "Department of Water and Power",
+    "description": "Department of Water and Power",
     "date": "01/02/2020",
     "category": "home",
     "amount": "80"
   },
   {
-    "transactionName": "Dennys",
+    "description": "Dennys",
     "date": "01/12/2020",
     "category": "food",
     "amount": "40"
   },
   {
-    "transactionName": "Bookstore",
+    "description": "Bookstore",
     "date": "01/1/20",
     "category": "Other",
     "amount": "25"
   },
   {
-    "transactionName": "Chipotle",
+    "description": "Chipotle",
     "date": "02/02/2020",
     "category": "food",
     "amount": "50"
   },
   {
-    "transactionName": "Chevron",
+    "description": "Chevron",
     "date": "02/22/2020",
     "category": "auto",
     "amount": "25"
   },
   {
-    "transactionName": "Trader Joes",
+    "description": "Trader Joes",
     "date": "2/30/20",
     "category": "food",
     "amount": "70"
   },
   {
-    "transactionName": "Kaiser Health",
+    "description": "Kaiser Health",
     "date": "03/02/2020",
     "category": "health",
     "amount": "150"
   },
   {
-    "transactionName": "Southwest Airlines",
+    "description": "Southwest Airlines",
     "date": "03/10/2020",
     "category": "travel",
     "amount": "100"
   },
   {
-    "transactionName": "DMV",
+    "description": "DMV",
     "date": "04/10/2020",
     "category": "auto",
     "amount": "100"
   },
   {
-    "transactionName": "Netflix",
+    "description": "Netflix",
     "date": "04/30/2020",
     "category": "other",
     "amount": "20"
   },
   {
-    "transactionName": "Target",
+    "description": "Target",
     "date": "5/1/20",
     "category": "food",
     "amount": "50"
   },
   {
-    "transactionName": "Trader Joes",
+    "description": "Trader Joes",
     "date": "6/30/20",
     "category": "food",
     "amount": "200"
   },
   {
-    "transactionName": "Chevron",
+    "description": "Chevron",
     "date": "7/18/20",
     "category": "auto",
     "amount": "40"
   },
   {
-    "transactionName": "Spectrum",
+    "description": "Spectrum",
     "date": "8/13/20",
     "category": "home",
     "amount": "100"
   },
   {
-    "transactionName": "Hollywood Bowl",
+    "description": "Hollywood Bowl",
     "date": "9/13/20",
     "category": "entertainment",
     "amount": "150"
   },
   {
-    "transactionName": "Bookstore",
+    "description": "Bookstore",
     "date": "10/1/20",
     "category": "Other",
     "amount": "50.99"
   },
   {
-    "transactionName": "American Airlines",
+    "description": "American Airlines",
     "date": "11/2/20",
     "category": "Travel",
     "amount": "284.51"
   },
   {
-    "transactionName": "Pet care",
+    "description": "Pet care",
     "date": "12/1/20",
     "category": "other",
     "amount": "100"

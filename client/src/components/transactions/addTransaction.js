@@ -7,7 +7,7 @@ import cleanDate from '../../utils/cleanDate';
 import './addTransaction.css';
 
 const AddTransaction = () => {
-  const [transactionName, setTransactionName] = useState('');
+  const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -29,15 +29,15 @@ const AddTransaction = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let newTransaction = {
-      transactionName: '',
+      description: '',
       date: '',
       amount: null,
       category: '',
       userId: null,
     };
 
-    if (user && transactionName && date && amount && category) {
-      newTransaction.transactionName = transactionName;
+    if (user && description && date && amount && category) {
+      newTransaction.description = description;
       newTransaction.date = date;
       newTransaction.amount = amount;
       newTransaction.category = category;
@@ -52,7 +52,7 @@ const AddTransaction = () => {
       return;
     }
 
-    setTransactionName('');
+    setDescription('');
     setDate('');
     setAmount('');
     setCategory('');
@@ -91,7 +91,7 @@ const AddTransaction = () => {
     if (edit) {
       const dateFormat = cleanDate(edit[0].date);
 
-      setTransactionName(edit[0].transactionName);
+      setDescription(edit[0].description);
       setDate(dateFormat);
       setAmount(edit[0].amount);
       setCategory(edit[0].category);
@@ -107,10 +107,10 @@ const AddTransaction = () => {
         <label>Transaction Name</label>
         <input
           type='text'
-          name='transactionName'
-          value={transactionName || ''}
+          name='description'
+          value={description || ''}
           placeholder='transaction'
-          onChange={(e) => setTransactionName(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
         <label>Date (2020 calendar year)</label>
