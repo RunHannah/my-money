@@ -22,30 +22,78 @@ function Upload() {
   useEffect(() => {
     const checkCsvData = () => {
       if (csvData.length > 0) {
-        csvData.map(async (entry) => {
+        let errors = [];
+        csvData.map(async (item) => {
           let record = {};
-          Object.keys(entry).map((key) => {
-            key.toLowerCase();
 
-            if (key === 'category') {
-              const val = entry[key];
-              const valUpdated = val[0].toUpperCase() + val.slice(1);
-              return (record[`${key}`] = valUpdated);
-            } else {
-              record[`${key}`] = entry[key];
-              return (record.userId = user.id);
-            }
-          });
-          await transact.addNewTransaction(record);
+          Object.keys(item).map((key) => {
+            key = key.toLowerCase();
+
+            switch (key) {
+              case 'category':
+                {
+                  let val = item[key].trim().toLowerCase();
+                  if (
+                    ![
+                      'food',
+                      'entertainment',
+                      'health',
+                      'other',
+                      'auto',
+                      'travel',
+                      'home',
+                    ].includes(val)
+                  ) {
+                    val = 'other';
+                  }
+                  const valUpdated = val[0].toUpperCase() + val.slice(1);
+                  record[`${key}`] = valUpdated;
+                }
+                break;
+              case 'amount':
+                {
+                  const val = item[key].trim();
+                  if (!/^[0-9]*$/gm.test(val)) {
+                    errors.push(`${val} is not valid number`);
+                  } else {
+                    record[`${key}`] = val;
+                  }
+                }
+                break;
+              case 'description':
+                {
+                  const val = item[key].trim();
+                  record[`${key}`] = val;
+                }
+                break;
+              case 'date':
+                {
+                  const val = item[key].trim();
+                  record[`${key}`] = val;
+                }
+                break;
+              default:
+                errors.push(`${key} is an invalid field}`);
+                break;
+            } // end of switch case
+            return record;
+          }); // end of item loop
+          if (errors.length === 0) {
+            record.userId = user.id;
+            await transact.addNewTransaction(record);
+          }
         });
-      }
+        if (errors.length > 0) {
+          console.log('errors', errors);
+        }
+      } // end of if condition
       getUserTransactions(user.id);
-    };
+    }; // end of function
 
     if (csvData.length > 0) {
       checkCsvData();
     }
-  });
+  }, [csvData, user.id]); // end of useEffect
 
   return (
     <div
@@ -54,6 +102,7 @@ function Upload() {
         width: '200px',
         height: '50px',
         marginLeft: 'auto',
+        textAlign: 'center',
         backgroundColor: highlighted ? 'grey' : '#fff',
       }}
       onDragEnter={() => {
@@ -78,7 +127,7 @@ function Upload() {
           });
       }}
     >
-      Drop .csv file here
+      Drag and drop .CSV file here
     </div>
   );
 }
