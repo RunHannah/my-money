@@ -26,30 +26,39 @@ const LineChart = () => {
 
   const loadCategoryData = useCallback(() => {
     let categories = {
-      Food: 0,
-      Entertainment: 0,
-      Health: 0,
-      Other: 0,
-      Auto: 0,
-      Travel: 0,
-      Home: 0,
+      Food: null,
+      Entertainment: null,
+      Health: null,
+      Other: null,
+      Auto: null,
+      Travel: null,
+      Home: null,
     };
 
+    let total = 0;
     for (const dataObj of data) {
       let category = dataObj.category.toLowerCase();
-      category = category.charAt(0).toUpperCase() + category.slice(1);
       let amount = parseInt(dataObj.amount);
+
+      category = category.charAt(0).toUpperCase() + category.slice(1);
+      total += amount;
 
       if (category in categories) {
         categories[category] += amount;
       }
     }
+    // calculate to %
+    Object.keys(categories).map((key) => {
+      categories[key] = Math.round((categories[key] / total) * 100);
+      if (categories[key] === 0) return (categories[key] = null);
+      return categories;
+    });
 
     setPieCategoryData({
       labels: Object.keys(categories),
       datasets: [
         {
-          label: 'Total by Category',
+          label: 'Percent Spending by Category for 2020 Year',
           data: Object.values(categories),
           backgroundColor: [
             '#7E55B4',
@@ -79,27 +88,36 @@ const LineChart = () => {
         Home: null,
       };
 
+      let total = 0;
       for (const dataObj of data) {
         const monthInt = parseInt(dataObj.date.split('-')[1]) - 1;
         const dataObjMonth = months[monthInt];
 
         if (dataObjMonth === month) {
           let category = dataObj.category.toLowerCase();
-          category = category.charAt(0).toUpperCase() + category.slice(1);
-
           let amount = parseInt(dataObj.amount);
+
+          category = category.charAt(0).toUpperCase() + category.slice(1);
+          total += amount;
 
           if (category in categories) {
             categories[category] += amount;
           }
         }
       }
+      // calculate to %
+      Object.keys(categories).map((key) => {
+        categories[key] = Math.round((categories[key] / total) * 100);
+        if (categories[key] === 0 || isNaN(categories[key]))
+          return (categories[key] = null);
+        return categories;
+      });
 
       setPieMonthCatData({
         labels: Object.keys(categories),
         datasets: [
           {
-            label: 'Total by Category',
+            label: 'Percent Spending by Category & Month',
             data: Object.values(categories),
             backgroundColor: [
               '#7E55B4',
@@ -154,7 +172,7 @@ const LineChart = () => {
             options={{
               responsive: true,
               title: {
-                text: `2020 Spending for ${month}`,
+                text: `Percent Spending by Category for ${month}`,
                 display: true,
                 fontSize: 15,
                 padding: 20,
@@ -185,7 +203,7 @@ const LineChart = () => {
           options={{
             responsive: true,
             title: {
-              text: '2020 Spending by Category',
+              text: 'Percent Spending by Category for 2020 Year',
               display: true,
               fontSize: 15,
               padding: 20,
