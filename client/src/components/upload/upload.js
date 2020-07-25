@@ -3,6 +3,7 @@ import { parse } from 'papaparse';
 import { DataContext } from '../../contexts/dataContext';
 import { UserContext } from '../../contexts/userContext';
 import transact from '../../services/transactService';
+import './upload.css';
 
 function Upload() {
   const [highlighted, setHighlighted] = useState(false);
@@ -96,38 +97,39 @@ function Upload() {
   }, [csvData, user.id]); // end of useEffect
 
   return (
-    <div
-      style={{
-        color: 'blue',
-        width: '200px',
-        height: '50px',
-        marginLeft: 'auto',
-        textAlign: 'center',
-        backgroundColor: highlighted ? 'grey' : '#fff',
-      }}
-      onDragEnter={() => {
-        setHighlighted(true);
-      }}
-      onDragLeave={() => {
-        setHighlighted(false);
-      }}
-      onDragOver={(e) => {
-        e.preventDefault();
-      }}
-      onDrop={(e) => {
-        e.preventDefault();
-        setHighlighted(false);
+    <div className='uploadWrapper'>
+      <div
+        className={'upload ' + (highlighted ? 'highlighted' : '')}
+        onDragEnter={() => {
+          setHighlighted(true);
+        }}
+        onDragLeave={() => {
+          setHighlighted(false);
+        }}
+        onDragOver={(e) => {
+          e.preventDefault();
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          setHighlighted(false);
 
-        Array.from(e.dataTransfer.files)
-          .filter((file) => file.type === 'text/csv')
-          .forEach(async (file) => {
-            const text = await file.text();
-            const result = parse(text, { header: true });
-            setCsvData((existing) => [...existing, ...result.data]);
-          });
-      }}
-    >
-      Drag and drop .CSV file here
+          Array.from(e.dataTransfer.files)
+            .filter((file) => file.type === 'text/csv')
+            .forEach(async (file) => {
+              const text = await file.text();
+              const result = parse(text, { header: true });
+              setCsvData((existing) => [...existing, ...result.data]);
+            });
+        }}
+      >
+        Drag and drop .CSV file here
+      </div>
+      <>
+        <p className='uploadText'>
+          Valid CSV files contain only the following columns: Date, Category,
+          Description, and Amount
+        </p>
+      </>
     </div>
   );
 }

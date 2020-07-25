@@ -1,0 +1,36 @@
+.uploadWrapper {
+  display: none;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  width: 50vw;
+}
+
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin-right: 10px;
+  height: 50px;
+  text-align: center;
+  color: #005b6d;
+  background-color: #dfdfdf;
+  border-radius: 20px;
+}
+
+.uploadText {
+  width: 300px;
+  margin-left: 10px;
+}
+
+.highlighted {
+  background-color: #009fb7;
+}
+
+@media (min-width: 1024px) and (orientation: landscape) {
+  .uploadWrapper {
+    display: flex;
+  }
+}

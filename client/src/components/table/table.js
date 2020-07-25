@@ -9,7 +9,7 @@ const Table = () => {
   const columns = [
     'Date',
     'Category',
-    'Transaction',
+    'Description',
     'Amount',
     'Edit',
     'Delete',
