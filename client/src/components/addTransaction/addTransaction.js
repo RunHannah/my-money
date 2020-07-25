@@ -115,6 +115,7 @@ const AddTransaction = () => {
         />
         <label>Date (2020 calendar year)</label>
         <input
+          className='dateInput'
           type='date'
           name='date'
           min='2020-01-01'
