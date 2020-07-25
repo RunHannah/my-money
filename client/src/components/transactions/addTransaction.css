@@ -2,13 +2,17 @@
   margin: 20px auto;
 }
 
-select {
+.addSelect {
   width: 100%;
-  height: 40px;
-  margin: 12px auto;
-  padding: 0 10px;
+  height: 33px;
+  margin-top: 20px;
+  color: #616060;
 }
 
 select:hover {
   cursor: pointer;
+}
+
+input {
+  padding: 2px 0px;
 }

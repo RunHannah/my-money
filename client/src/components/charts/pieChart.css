@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+.pieSelect {
+  width: 100%;
+  height: 40px;
+  margin: 12px auto;
+  padding: 0 10px;
+  background-color: #aef0ff;
+}
+
 @media (min-width: 1024px) {
   .pieCharts {
     width: 50%;

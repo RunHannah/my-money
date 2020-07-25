@@ -3,9 +3,9 @@
 }
 
 canvas {
-  border: 1px solid #3e517a;
   margin-bottom: 40px;
   width: 100% !important;
+  background-color: #dfdfdf;
 }
 
 .noData {

@@ -134,6 +134,7 @@ const AddTransaction = () => {
           required
         />
         <select
+          className='addSelect'
           name='category'
           value={category || ''}
           onChange={(e) => setCategory(e.target.value)}

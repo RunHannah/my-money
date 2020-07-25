@@ -26,9 +26,13 @@
   opacity: 1;
   position: fixed;
   top: 0;
-  background: #009fb7;
+  background: #008eaa;
   transition: width 0.3s ease, max-width 0.3s ease, flex-direction 0.3s ease,
     position 0.3s ease;
+}
+
+.openBtn {
+  color: #aef0ff;
 }
 
 .openBtn,
@@ -59,7 +63,8 @@
   opacity: 1;
   position: absolute;
   top: 0;
-  background: #009fb7;
+  background: #005b6d;
+  color: #005b6d;
   overflow-x: hidden;
   transition: all 0.3s ease;
 }
@@ -136,7 +141,7 @@
   }
 
   .navItems a {
-    color: #009fb7;
+    color: #aef0ff;
     font-size: 1.1rem;
     margin: 0 15px;
   }

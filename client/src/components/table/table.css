@@ -19,20 +19,27 @@
 
 .delete {
   width: 12px;
-}
-
-.disabled {
-  width: 12px;
-  cursor: not-allowed;
+  padding: 2px;
 }
 
 .edit {
   width: 18px;
+  padding: 1px;
+}
+
+.edit,
+.delete {
+  background-color: #aef0ff;
 }
 
 .delete:hover,
 .edit:hover {
   cursor: pointer;
+}
+
+.disabled {
+  width: 12px;
+  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {

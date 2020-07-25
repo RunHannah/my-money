@@ -156,6 +156,7 @@ const LineChart = () => {
           <form className='form' onChange={handleSubmit}>
             <label>Filter spending by month</label>
             <select
+              className='pieSelect'
               name='month'
               value={month || ''}
               onChange={(e) => setMonth(e.target.value)}
