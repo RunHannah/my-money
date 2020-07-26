@@ -29,6 +29,14 @@
   background-color: #009fb7;
 }
 
+.fileError {
+  margin: 0;
+}
+
+.uploadText > ul {
+  margin: 3px auto;
+}
+
 @media (min-width: 1024px) and (orientation: landscape) {
   .uploadWrapper {
     display: flex;

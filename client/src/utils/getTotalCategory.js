@@ -18,7 +18,6 @@ const getTotalCategory = (data) => {
       categories[category] += amount;
     }
   }
-  console.log('utils', categories);
   return categories;
 };
 
