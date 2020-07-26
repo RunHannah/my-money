@@ -3,16 +3,23 @@ import { NavLink } from 'react-router-dom';
 import { DataContext } from '../../contexts/dataContext';
 import BarChart from './barChart';
 import PieChart from './pieChart';
+import Overview from '../overview/overview';
 import './charts.css';
 
 const Charts = () => {
   const { data } = useContext(DataContext);
   return (
     <div className='charts'>
+      <h2 className='chartsTitle'>2020 Activity</h2>
       {typeof data === 'object' ? (
         <Fragment>
-          <BarChart />
-          <PieChart />
+          <div className='overviewBar'>
+            <Overview />
+            <BarChart />
+          </div>
+          <div className='overviewPie'>
+            <PieChart />
+          </div>
         </Fragment>
       ) : (
         <p className='noData'>

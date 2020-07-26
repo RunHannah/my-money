@@ -11,9 +11,15 @@
   background-color: #aef0ff;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
+  .pieCharts {
+    width: 100%;
+  }
+}
+
+/* @media (min-width: 1024px) {
   .pieCharts {
     width: 50%;
     margin: 0 10px;
   }
-}
+} */

@@ -23,10 +23,20 @@ canvas {
   text-decoration: none;
 }
 
-@media (min-width: 1024px) {
-  .charts {
+@media (min-width: 768px) {
+  .overviewBar {
     display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  .overviewBar {
     flex-direction: row;
-    align-items: flex-end;
+    justify-content: space-evenly;
+  }
+
+  .chartsTitle {
+    text-align: center;
   }
 }

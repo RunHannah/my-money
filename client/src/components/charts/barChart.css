@@ -1,7 +1,5 @@
 .barCharts {
   width: 100%;
-  position: relative;
-  margin: 0 auto;
 }
 
 .barChart {
@@ -12,9 +10,14 @@
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .barCharts {
+    width: 100%;
+  }
+}
+
 @media (min-width: 1024px) {
   .barCharts {
-    width: 50%;
-    margin: 0 10px;
+    width: 65%;
   }
 }
