@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import cleanData from '../../utils/cleanDate';
 import getTotalCategory from '../../utils/getTotalCategory';
-import './overview.css';
+import './overviewBar.css';
 
 function Overview() {
   const { data } = useContext(DataContext);

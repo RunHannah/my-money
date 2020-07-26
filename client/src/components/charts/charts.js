@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { DataContext } from '../../contexts/dataContext';
 import BarChart from './barChart';
 import PieChart from './pieChart';
-import Overview from '../overview/overview';
+import OverviewBar from '../overviewBar/overviewBar';
 import './charts.css';
 
 const Charts = () => {
@@ -14,7 +14,7 @@ const Charts = () => {
       {typeof data === 'object' ? (
         <Fragment>
           <div className='overviewBar'>
-            <Overview />
+            <OverviewBar />
             <BarChart />
           </div>
           <div className='overviewPie'>
