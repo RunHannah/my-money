@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import { Bar } from 'react-chartjs-2';
+import getTotalCategory from '../../utils/getTotalCategory';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import './barChart.css';
 
@@ -84,32 +85,14 @@ const BarChart = () => {
   }, [data]);
 
   const loadCategoryData = useCallback(() => {
-    let categories = {
-      Food: 0,
-      Entertainment: 0,
-      Health: 0,
-      Other: 0,
-      Auto: 0,
-      Travel: 0,
-      Home: 0,
-    };
-
-    for (const dataObj of data) {
-      let category = dataObj.category.toLowerCase();
-      category = category.charAt(0).toUpperCase() + category.slice(1);
-      let amount = parseInt(dataObj.amount);
-
-      if (category in categories) {
-        categories[category] += amount;
-      }
-    }
+    const results = getTotalCategory(data);
 
     setBarCategoryData({
-      labels: Object.keys(categories),
+      labels: Object.keys(results),
       datasets: [
         {
           label: 'Total by Category',
-          data: Object.values(categories),
+          data: Object.values(results),
           backgroundColor: [
             '#009fb7',
             '#009fb7',
