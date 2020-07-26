@@ -4,7 +4,7 @@
 
 canvas {
   margin-bottom: 40px;
-  width: 100% !important;
+  /* width: 100% !important; */
   background-color: #dfdfdf;
 }
 
@@ -28,15 +28,25 @@ canvas {
     display: flex;
     flex-direction: column;
   }
+
+  .overviewPie {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 1024px) {
+  .chartsTitle {
+    text-align: center;
+  }
+
   .overviewBar {
     flex-direction: row;
     justify-content: space-evenly;
   }
 
-  .chartsTitle {
-    text-align: center;
+  .overviewPie {
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 }

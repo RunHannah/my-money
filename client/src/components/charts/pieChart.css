@@ -1,5 +1,12 @@
 .pieCharts {
-  margin: 0 auto;
+  width: 100%;
+}
+
+.pieChart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
   width: 100%;
 }
 
@@ -17,9 +24,8 @@
   }
 }
 
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   .pieCharts {
-    width: 50%;
-    margin: 0 10px;
+    width: 65%;
   }
-} */
+}

@@ -4,6 +4,7 @@ import { DataContext } from '../../contexts/dataContext';
 import BarChart from './barChart';
 import PieChart from './pieChart';
 import OverviewBar from '../overviewBar/overviewBar';
+import OverviewPie from '../overviewPie/overviewPie';
 import './charts.css';
 
 const Charts = () => {
@@ -18,6 +19,7 @@ const Charts = () => {
             <BarChart />
           </div>
           <div className='overviewPie'>
+            <OverviewPie />
             <PieChart />
           </div>
         </Fragment>

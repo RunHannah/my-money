@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import cleanData from '../../utils/cleanDate';
 import getTotalCategory from '../../utils/getTotalCategory';
-import './overviewBar.css';
+import './overviewPie.css';
 
-function OverviewBar() {
+function OverviewPie() {
   const { data } = useContext(DataContext);
   const [total, setTotal] = useState(0);
   const [avg, setAvg] = useState(0);
@@ -68,4 +68,4 @@ function OverviewBar() {
   );
 }
 
-export default OverviewBar;
+export default OverviewPie;
