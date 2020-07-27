@@ -2,14 +2,6 @@
   width: 100%;
 }
 
-.barChart {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-
 @media (min-width: 768px) {
   .barCharts {
     width: 100%;

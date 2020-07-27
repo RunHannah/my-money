@@ -151,60 +151,28 @@ const LineChart = () => {
 
   return (
     <div className='pieCharts'>
-      <div className='pieChart'>
-        <div className='pieCatMonth'>
-          <form className='form' onChange={handleSubmit}>
-            <label>Filter spending by month</label>
-            <select
-              className='pieSelect'
-              name='month'
-              value={month || ''}
-              onChange={(e) => setMonth(e.target.value)}
-            >
-              {months.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </form>
-          <Doughnut
-            data={pieMonthCatData}
-            options={{
-              responsive: true,
-              title: {
-                text: `Percent Spending by Category for ${month}`,
-                display: true,
-                fontSize: 15,
-                padding: 20,
-              },
-              backgroundColor: 'rgba(0, 0, 0, 0.1)',
-              legend: {
-                position: 'left',
-              },
-              layout: {
-                padding: {
-                  left: 10,
-                  right: 10,
-                  top: 0,
-                  bottom: 10,
-                },
-              },
-              plugins: {
-                datalabels: {
-                  color: '#000',
-                },
-              },
-              inGraphDataTmpl: "<%=(v6 > 0 ? v6+' %' : ' ')%>",
-            }}
-          />
-        </div>
+      <div className='pieCatMonth'>
+        <form className='form' onChange={handleSubmit}>
+          <label>Filter spending by month</label>
+          <select
+            className='pieSelect'
+            name='month'
+            value={month || ''}
+            onChange={(e) => setMonth(e.target.value)}
+          >
+            {months.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </form>
         <Doughnut
-          data={pieCategoryData}
+          data={pieMonthCatData}
           options={{
             responsive: true,
             title: {
-              text: 'Percent Spending by Category for 2020 Year',
+              text: `% Spending by Category for ${month}`,
               display: true,
               fontSize: 15,
               padding: 20,
@@ -224,11 +192,51 @@ const LineChart = () => {
             plugins: {
               datalabels: {
                 color: '#000',
+                formatter: function (value) {
+                  if (value !== null) {
+                    return value + '%';
+                  }
+                },
               },
             },
+            inGraphDataTmpl: "<%=(v6 > 0 ? v6+' %' : ' ')%>",
           }}
         />
       </div>
+      <Doughnut
+        data={pieCategoryData}
+        options={{
+          responsive: true,
+          title: {
+            text: '% Spending by Category for Year',
+            display: true,
+            fontSize: 15,
+            padding: 20,
+          },
+          backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          legend: {
+            position: 'left',
+          },
+          layout: {
+            padding: {
+              left: 10,
+              right: 10,
+              top: 0,
+              bottom: 10,
+            },
+          },
+          plugins: {
+            datalabels: {
+              color: '#000',
+              formatter: function (value) {
+                if (value !== null) {
+                  return value + '%';
+                }
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 };

@@ -112,7 +112,7 @@ const BarChart = () => {
   const barDesktopStyle = {
     responsive: true,
     title: {
-      text: '2020 Year Expenses',
+      text: '$ Total Spending',
       display: true,
       fontSize: 15,
       padding: 20,
@@ -172,7 +172,7 @@ const BarChart = () => {
   const barMobileStyle = {
     responsive: true,
     title: {
-      text: '2020 Year Expenses',
+      text: '$ Total Spending',
       display: true,
       fontSize: 12,
       padding: 12,
@@ -249,16 +249,14 @@ const BarChart = () => {
 
   return (
     <div className='barCharts'>
-      <div className='barChart'>
-        <Bar
-          data={barMonthData}
-          options={isMobile ? barMobileStyle : barDesktopStyle}
-        />
-        <Bar
-          data={barCategoryData}
-          options={isMobile ? barMobileStyle : barDesktopStyle}
-        />
-      </div>
+      <Bar
+        data={barMonthData}
+        options={isMobile ? barMobileStyle : barDesktopStyle}
+      />
+      <Bar
+        data={barCategoryData}
+        options={isMobile ? barMobileStyle : barDesktopStyle}
+      />
     </div>
   );
 };
