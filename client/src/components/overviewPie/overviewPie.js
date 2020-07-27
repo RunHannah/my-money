@@ -1,67 +1,46 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
-import cleanData from '../../utils/cleanDate';
-import getTotalCategory from '../../utils/getTotalCategory';
+import getPercentCategory from '../../utils/getPercentCategory';
 import './overviewPie.css';
 
 function OverviewPie() {
   const { data } = useContext(DataContext);
-  const [total, setTotal] = useState(0);
-  const [avg, setAvg] = useState(0);
-  const [maxCategory, setMaxCategory] = useState({});
+  const [minMax, setMinMax] = useState({});
 
-  const getTotalYear = useCallback(() => {
-    let totalAmount = 0;
-    data.map((item) => {
-      return (totalAmount += item.amount);
-    });
-    setTotal(totalAmount);
-  }, [data]);
-
-  const getAvgMonth = useCallback(() => {
-    let months = [];
-    data.map((item) => {
-      const editDate = cleanData(item.date);
-      const month = editDate.split('-')[1];
-
-      if (months.indexOf(month) < 0) {
-        months.push(month);
-      }
-      return months;
-    });
-    return total > 0 ? setAvg(Math.round(total / months.length)) : 0;
-  }, [data, total]);
-
-  const getHighestCategory = useCallback(() => {
-    const results = getTotalCategory(data);
-    let max = {};
-    let category = Object.keys(results).reduce((a, b) =>
+  const getMinMax = useCallback(() => {
+    const results = getPercentCategory(data);
+    let minMaxResults = {};
+    const maxCat = Object.keys(results).reduce((a, b) =>
       results[a] > results[b] ? a : b
     );
-    max = { category, amount: results[category] };
-    return setMaxCategory(max);
+    const minCat = Object.keys(results).reduce((a, b) =>
+      results[a] < results[b] ? a : b
+    );
+    minMaxResults = {
+      maxCat,
+      minCat,
+      maxPercent: results[maxCat],
+      minPercent: results[minCat],
+    };
+    return setMinMax(minMaxResults);
   }, [data]);
 
   useEffect(() => {
-    getTotalYear();
-    getAvgMonth();
-    getHighestCategory();
-  }, [data, getAvgMonth, getTotalYear, getHighestCategory]);
+    getMinMax();
+  }, [data, getMinMax]);
 
   return (
-    <div className='overviewSummary'>
+    <div className='summaryPie'>
       <span>
-        <span className='overviewTitle'>Total Spending</span>
-        <p>${total}</p>
-      </span>
-      <span>
-        <span className='overviewTitle'>Average Monthly Spending</span>
-        <p>${avg}</p>
-      </span>
-      <span>
-        <span className='overviewTitle'>Highest Spending Category</span>
+        <span className='overviewTitle'>Lowest % Spending</span>
         <p>
-          {maxCategory.category} ${maxCategory.amount}
+          {minMax.minCat} {minMax.minPercent}%
+        </p>
+      </span>
+      <span>
+        <span className='overviewTitle'>Top % Spending</span>
+        <p>
+          {minMax.maxCat} {minMax.maxPercent}%
         </p>
       </span>
     </div>

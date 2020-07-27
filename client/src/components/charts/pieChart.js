@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import { Doughnut } from 'react-chartjs-2';
 import getPercentCategory from '../../utils/getPercentCategory';
+import pieStyling from './styling/pieStyling';
 import './pieChart.css';
 
 const LineChart = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const { data } = useContext(DataContext);
   const [pieMonthCatData, setPieMonthCatData] = useState({});
   const [pieCategoryData, setPieCategoryData] = useState({});
@@ -123,11 +125,23 @@ const LineChart = () => {
     loadCategoryData();
   }, [loadCategoryData]);
 
+  useEffect(() => {
+    if (window.innerWidth > 769) {
+      setIsMobile(false);
+    } else {
+      setIsMobile(true);
+    }
+  }, []);
+
   return (
     <div className='pieCharts'>
+      <Doughnut
+        data={pieCategoryData}
+        options={isMobile ? pieStyling.mobileYear : pieStyling.desktopYear}
+      />{' '}
       <div className='pieCatMonth'>
         <form className='form' onChange={handleSubmit}>
-          <label>Filter % spending by month</label>
+          <label>Select % spending by month</label>
           <select
             className='pieSelect'
             name='month'
@@ -143,74 +157,9 @@ const LineChart = () => {
         </form>
         <Doughnut
           data={pieMonthCatData}
-          options={{
-            responsive: true,
-            title: {
-              text: `% Spending by Category for ${month}`,
-              display: true,
-              fontSize: 15,
-              padding: 20,
-            },
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-            legend: {
-              position: 'left',
-            },
-            layout: {
-              padding: {
-                left: 10,
-                right: 10,
-                top: 0,
-                bottom: 10,
-              },
-            },
-            plugins: {
-              datalabels: {
-                color: '#000',
-                formatter: function (value) {
-                  if (value !== null) {
-                    return value + '%';
-                  }
-                },
-              },
-            },
-            inGraphDataTmpl: "<%=(v6 > 0 ? v6+' %' : ' ')%>",
-          }}
+          options={isMobile ? pieStyling.mobileMonth : pieStyling.desktopMonth}
         />
       </div>
-      <Doughnut
-        data={pieCategoryData}
-        options={{
-          responsive: true,
-          title: {
-            text: '% Spending by Category for Year',
-            display: true,
-            fontSize: 15,
-            padding: 20,
-          },
-          backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          legend: {
-            position: 'left',
-          },
-          layout: {
-            padding: {
-              left: 10,
-              right: 10,
-              top: 0,
-              bottom: 10,
-            },
-          },
-          plugins: {
-            datalabels: {
-              color: '#000',
-              formatter: function (value) {
-                if (value !== null) {
-                  return value + '%';
-                }
-              },
-            },
-          },
-        }}
-      />
     </div>
   );
 };

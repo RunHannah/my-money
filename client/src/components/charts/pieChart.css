@@ -8,6 +8,7 @@
   margin: 12px auto;
   padding: 0 10px;
   background-color: #aef0ff;
+  font-size: 1rem;
 }
 
 select:-moz-focusring {
