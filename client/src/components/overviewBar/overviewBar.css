@@ -27,4 +27,8 @@
   .overviewSummary {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  .overviewSummary > span {
+    width: 14rem;
+  }
 }

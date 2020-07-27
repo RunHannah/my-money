@@ -110,7 +110,7 @@ const LineChart = () => {
         ],
       });
     },
-    [data]
+    [data, months]
   );
 
   const handleSubmit = (e) => {
