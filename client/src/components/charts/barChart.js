@@ -129,7 +129,9 @@ const BarChart = () => {
       />
       <Bar
         data={barCategoryData}
-        options={isMobile ? barStyling.mobileCategory : barStyling.desktopYear}
+        options={
+          isMobile ? barStyling.mobileCategory : barStyling.desktopCategory
+        }
       />
     </div>
   );

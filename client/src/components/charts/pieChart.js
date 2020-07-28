@@ -5,7 +5,7 @@ import getPercentCategory from '../../utils/getPercentCategory';
 import pieStyling from './styling/pieStyling';
 import './pieChart.css';
 
-const LineChart = () => {
+const PieChart = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { data } = useContext(DataContext);
   const [pieMonthCatData, setPieMonthCatData] = useState({});
@@ -52,74 +52,86 @@ const LineChart = () => {
     });
   }, [data]);
 
-  const loadCatMonthData = useCallback(
-    (month) => {
-      let categories = {
-        Food: null,
-        Entertainment: null,
-        Health: null,
-        Other: null,
-        Auto: null,
-        Travel: null,
-        Home: null,
-      };
+  const loadCatMonthData = useCallback(() => {
+    const monthsArr = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
 
-      let total = 0;
-      for (const dataObj of data) {
-        const monthInt = parseInt(dataObj.date.split('-')[1]) - 1;
-        const dataObjMonth = months[monthInt];
+    let categories = {
+      Food: null,
+      Entertainment: null,
+      Health: null,
+      Other: null,
+      Auto: null,
+      Travel: null,
+      Home: null,
+    };
 
-        if (dataObjMonth === month) {
-          let category = dataObj.category.toLowerCase();
-          let amount = parseInt(dataObj.amount);
+    let total = 0;
+    for (const dataObj of data) {
+      const monthInt = parseInt(dataObj.date.split('-')[1]) - 1;
+      const dataObjMonth = monthsArr[monthInt];
 
-          category = category.charAt(0).toUpperCase() + category.slice(1);
-          total += amount;
+      if (dataObjMonth === month) {
+        let category = dataObj.category.toLowerCase();
+        let amount = parseInt(dataObj.amount);
 
-          if (category in categories) {
-            categories[category] += amount;
-          }
+        category = category.charAt(0).toUpperCase() + category.slice(1);
+        total += amount;
+
+        if (category in categories) {
+          categories[category] += amount;
         }
       }
-      // calculate to %
-      Object.keys(categories).map((key) => {
-        categories[key] = Math.round((categories[key] / total) * 100);
-        if (categories[key] === 0 || isNaN(categories[key]))
-          return (categories[key] = null);
-        return categories;
-      });
+    }
+    // calculate to %
+    Object.keys(categories).map((key) => {
+      categories[key] = Math.round((categories[key] / total) * 100);
+      if (categories[key] === 0 || isNaN(categories[key]))
+        return (categories[key] = null);
+      return categories;
+    });
 
-      setPieMonthCatData({
-        labels: Object.keys(categories),
-        datasets: [
-          {
-            label: 'Percent Spending by Category & Month',
-            data: Object.values(categories),
-            backgroundColor: [
-              '#7E55B4',
-              '#DF2935',
-              '#FFC71F',
-              '#009FB7',
-              '#FFC1CF',
-              '#2CCC00',
-              '#FFFECB',
-            ],
-            borderColor: '#CBCBD4',
-            borderWidth: 2,
-          },
-        ],
-      });
-    },
-    [data, months]
-  );
+    setPieMonthCatData({
+      labels: Object.keys(categories),
+      datasets: [
+        {
+          label: 'Percent Spending by Category & Month',
+          data: Object.values(categories),
+          backgroundColor: [
+            '#7E55B4',
+            '#DF2935',
+            '#FFC71F',
+            '#009FB7',
+            '#FFC1CF',
+            '#2CCC00',
+            '#FFFECB',
+          ],
+          borderColor: '#CBCBD4',
+          borderWidth: 2,
+        },
+      ],
+    });
+  }, [data, month]);
 
   const handleSubmit = (e) => {
     setMonth(e.target.value);
   };
 
   useEffect(() => {
-    loadCatMonthData(month);
-  }, [loadCatMonthData, month]);
+    loadCatMonthData();
+  }, [loadCatMonthData]);
 
   useEffect(() => {
     loadCategoryData();
@@ -164,4 +176,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default PieChart;
