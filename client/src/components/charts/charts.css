@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+.chartsTitle {
+  text-align: center;
+  margin-top: 0;
+}
+
 canvas {
   margin-bottom: 40px;
   /* width: 100% !important; */
@@ -36,10 +41,6 @@ canvas {
 }
 
 @media (min-width: 1024px) {
-  .chartsTitle {
-    text-align: center;
-  }
-
   .overviewBar {
     flex-direction: row;
     justify-content: space-evenly;
@@ -50,3 +51,12 @@ canvas {
     justify-content: space-evenly;
   }
 }
+
+/* @media (min-width: 1300px) {
+  .charts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+} */
