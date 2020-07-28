@@ -76,7 +76,7 @@ const barStyling = {
             callback: function (value) {
               return '$' + Number(value.toFixed(1)).toLocaleString();
             },
-            fontSize: 12,
+            fontSize: 14,
           },
           gridLines: {
             display: true,
@@ -85,6 +85,9 @@ const barStyling = {
       ],
       xAxes: [
         {
+          ticks: {
+            fontSize: 14,
+          },
           gridLines: {
             display: false,
           },
@@ -194,7 +197,7 @@ const barStyling = {
             callback: function (value) {
               return '$' + Number(value.toFixed(1)).toLocaleString();
             },
-            fontSize: 12,
+            fontSize: 14,
           },
           gridLines: {
             display: true,
@@ -203,6 +206,9 @@ const barStyling = {
       ],
       xAxes: [
         {
+          ticks: {
+            fontSize: 14,
+          },
           gridLines: {
             display: false,
           },

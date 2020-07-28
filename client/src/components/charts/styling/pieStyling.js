@@ -48,6 +48,7 @@ const pieStyling = {
       labels: {
         boxWidth: 30,
         padding: 10,
+        fontSize: 14,
       },
     },
     layout: {
@@ -65,6 +66,9 @@ const pieStyling = {
           if (value !== null) {
             return value + '%';
           }
+        },
+        font: {
+          size: 14,
         },
       },
     },
@@ -119,6 +123,7 @@ const pieStyling = {
       labels: {
         boxWidth: 30,
         padding: 10,
+        fontSize: 14,
       },
     },
     layout: {
@@ -136,6 +141,9 @@ const pieStyling = {
           if (value !== null) {
             return value + '%';
           }
+        },
+        font: {
+          size: 14,
         },
       },
     },
