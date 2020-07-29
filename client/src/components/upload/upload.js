@@ -3,6 +3,7 @@ import { parse } from 'papaparse';
 import { UserContext } from '../../contexts/userContext';
 import { DataContext } from '../../contexts/dataContext';
 import transact from '../../services/transactService';
+import moment from 'moment';
 import './upload.css';
 
 function Upload() {
@@ -53,7 +54,7 @@ function Upload() {
             {
               const val = item[key].trim();
               if (!/^[0-9]*$/gm.test(val)) {
-                errors.push(`${val} is not valid number`);
+                errors.push(`${val} is an invalid number`);
               } else {
                 record[`${key}`] = val;
               }
@@ -67,8 +68,21 @@ function Upload() {
             break;
           case 'date':
             {
+              const formats = [
+                'MM/DD/YYYY',
+                'M/DD/YYYY',
+                'M/D/YYYY',
+                'MM/D/YYYY',
+                'MM/DD/YY',
+                'M/DD/YY',
+                'MM/D/YY',
+                'M/D/YY',
+              ];
               const val = item[key].trim();
-              record[`${key}`] = val;
+              const status = moment(val, formats, true).isValid();
+              status
+                ? (record[`${key}`] = val)
+                : errors.push(`${val} is an invalid date`);
             }
             break;
           default:
