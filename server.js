@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
@@ -22,6 +23,9 @@ const apiRoute = require('./routes/transactions');
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
+// Enable CORS
+app.use(cors());
+
 // Sanitize data
 app.use(mongoSanitize());
 
@@ -30,9 +34,6 @@ app.use(helmet());
 
 // Prevent XSS attacks
 app.use(xss());
-
-// Enable CORS
-app.use(cors());
 
 // Mount routers
 app.use('/api/user', authRoute);

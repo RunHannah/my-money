@@ -17,15 +17,16 @@ const createTransactions = () => {
 
 const connectDB = async () => {
   const uri = require('./keys').mongoURI;
-  mongoose.connect(uri, {
+  await mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
   const db = mongoose.connection;
+  console.log('*************', db.name);
 
   db.once('open', async (_) => {
-    // console.log('Database connected:', db);
+    console.log('Database connected:', db.name);
     const eraseDatabaseOnSync = true;
     if (eraseDatabaseOnSync) {
       await Promise.all([Transaction.deleteMany({})]);
