@@ -72,7 +72,6 @@ const AddTransaction = () => {
       };
       await transact.editTransaction(edit[0]._id, data, headers);
       setEdit(null);
-      console.log('Boolean(edit)', Boolean(edit));
     }
 
     return getUserTransactions(user.id);

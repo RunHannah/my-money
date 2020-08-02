@@ -9,7 +9,6 @@
 
 canvas {
   margin-bottom: 40px;
-  /* width: 100% !important; */
   background-color: #dfdfdf;
 }
 
@@ -40,6 +39,10 @@ canvas {
     display: flex;
     flex-direction: column;
   }
+
+  .chartsTitle {
+    font-size: 2.1rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -56,6 +59,11 @@ canvas {
   .pie {
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  canvas {
+    max-width: 600px;
+    width: 100%;
   }
 }
 

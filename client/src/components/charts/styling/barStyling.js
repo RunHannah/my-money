@@ -71,7 +71,7 @@ const barStyling = {
         {
           ticks: {
             autoSkip: true,
-            maxTicksLimit: 10,
+            maxTicksLimit: 8,
             beginAtZero: true,
             callback: function (value) {
               return '$' + Number(value.toFixed(1)).toLocaleString();
@@ -192,7 +192,7 @@ const barStyling = {
         {
           ticks: {
             autoSkip: true,
-            maxTicksLimit: 10,
+            maxTicksLimit: 8,
             beginAtZero: true,
             callback: function (value) {
               return '$' + Number(value.toFixed(1)).toLocaleString();

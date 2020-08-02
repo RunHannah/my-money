@@ -154,10 +154,18 @@ function Upload() {
       </div>
       <div className='uploadText'>
         {errorsList.length === 0 ? (
-          <p>
-            Valid CSV files contain only the following columns: Date, Category,
-            Description, and Amount.
-          </p>
+          <>
+            <p>
+              Valid CSV files contain only the following columns: Date,
+              Category, Description, and Amount.
+            </p>
+            <span>
+              <b>
+                NOT RESPONSIBLE FOR PERSONAL DATA UPLOADED TO DATABASE. DO NOT
+                USE PERSONAL DATA.
+              </b>
+            </span>
+          </>
         ) : (
           <>
             <p className='fileError'>Unable to upload file:</p>

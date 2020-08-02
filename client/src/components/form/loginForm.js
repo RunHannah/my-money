@@ -23,7 +23,6 @@ const LoginForm = (props) => {
       window.location.reload();
     } catch (error) {
       // need to update
-      console.log('error', error);
       alert('User email not found');
       clearFields();
     }
