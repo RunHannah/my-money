@@ -11,14 +11,14 @@ const Charts = () => {
   const { data } = useContext(DataContext);
   return (
     <div className='charts'>
-      <h2 className='chartsTitle'>2020 Activity</h2>
+      {/* <h2 className='chartsTitle'>2020 Activity</h2> */}
       {typeof data === 'object' ? (
         <Fragment>
-          <div className='overviewBar'>
+          <div className='bar'>
             <OverviewBar />
             <BarChart />
           </div>
-          <div className='overviewPie'>
+          <div className='pie'>
             <OverviewPie />
             <PieChart />
           </div>

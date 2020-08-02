@@ -29,34 +29,42 @@ canvas {
 }
 
 @media (min-width: 768px) {
-  .overviewBar {
+  .bar {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
 
-  .overviewPie {
+  .pie {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
 }
 
 @media (min-width: 1024px) {
-  .overviewBar {
-    flex-direction: row;
-    justify-content: space-evenly;
+  .charts {
+    display: flex;
+    flex-direction: column;
   }
 
-  .overviewPie {
+  .bar {
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
+  }
+
+  .pie {
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
 
-/* @media (min-width: 1300px) {
-  .charts {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+@media (min-width: 1300px) {
+  .bar {
+    flex-direction: column;
   }
-} */
+
+  .pie {
+    flex-direction: column;
+  }
+}
