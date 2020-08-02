@@ -59,7 +59,7 @@ canvas {
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1350px) {
   .bar {
     flex-direction: column;
   }
