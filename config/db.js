@@ -16,14 +16,12 @@ const createTransactions = () => {
 };
 
 const connectDB = async () => {
-  // const uri = require('./keys').mongoURI;
   await mongoose.connect(process.env.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
   const db = mongoose.connection;
-  console.log('*************', db.name);
 
   db.once('open', async (_) => {
     console.log('Database connected:', db.name);

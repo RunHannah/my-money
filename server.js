@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-// const bodyParser = require('body-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -21,7 +20,6 @@ const apiRoute = require('./routes/transactions');
 
 // Body parser
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors());
