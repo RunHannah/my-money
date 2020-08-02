@@ -16,8 +16,8 @@ const createTransactions = () => {
 };
 
 const connectDB = async () => {
-  const uri = require('./keys').mongoURI;
-  await mongoose.connect(uri, {
+  // const uri = require('./keys').mongoURI;
+  await mongoose.connect(process.env.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
