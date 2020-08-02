@@ -3,7 +3,8 @@
 #### Deployed here: https://my-money-mern.herokuapp.com/
 
 ```
-A personal finance app to track your yearly spending habits. Enter transactions and view charts by month and category.
+A personal finance app to track your yearly spending habits.
+Enter transactions and view charts by month and category.
 ```
 
 <p align="center">
@@ -26,7 +27,8 @@ Charting: Chart.js
 
 ```bash
 # Create a MongoDB database and cluster
-    Copy and Save the connection string from Connect > Connect to your application. Paste this value for the mongoURI key.
+    Copy and Save the connection string from Connect > Connect to your application.
+    Paste this value to the mongoURI key.
 
 # Clone repo
 
