@@ -49,7 +49,7 @@ function OverviewBar() {
   }, [data, getAvgMonth, getTotalYear, getHighestCategory]);
 
   return (
-    <div className='overviewSummary'>
+    <div className='summaryBar'>
       <span>
         <span className='overviewTitle'>Total Spending</span>
         <p>${total}</p>

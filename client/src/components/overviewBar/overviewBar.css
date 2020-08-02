@@ -2,7 +2,7 @@
   font-weight: bold;
 }
 
-.overviewSummary {
+.summaryBar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-.overviewSummary > span {
+.summaryBar > span {
   background-color: #aef0ff;
   color: #000;
   border-radius: 5px;
@@ -18,17 +18,23 @@
 }
 
 @media (min-width: 768px) {
-  .overviewSummary {
+  .summaryBar {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
-  .overviewSummary {
+  .summaryBar {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .overviewSummary > span {
+  .summaryBar > span {
     width: 14rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .summaryBar {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
