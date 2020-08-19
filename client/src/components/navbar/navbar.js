@@ -65,7 +65,7 @@ const NavBar = () => {
   }, [width]);
 
   return (
-    <div className={`navbar ${deviceType}`} ref={wrapperRef}>
+    <header className={`navbar ${deviceType}`} ref={wrapperRef}>
       <div className='navMenu'>
         <span className='openBtn' onClick={openNav}>
           &#9776;
@@ -116,7 +116,7 @@ const NavBar = () => {
           )}
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

@@ -52,21 +52,23 @@ function App() {
       <DataContext.Provider value={{ data, setData }}>
         <UserContext.Provider value={providerValue}>
           <NavBar />
-          <Switch>
-            <Route path='/login' component={LoginForm} />
-            <Route path='/register' component={Register} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/logout' component={Logout} />
-            {data && (
-              <EditDataContext.Provider value={{ edit, setEdit }}>
-                <>
-                  <Route path='/charts' component={Charts} />
-                  <Route path='/transactions' component={Transactions} />
-                  <Redirect from='/' exact to='/charts' />
-                </>
-              </EditDataContext.Provider>
-            )}
-          </Switch>
+          <main>
+            <Switch>
+              <Route path='/login' component={LoginForm} />
+              <Route path='/register' component={Register} />
+              <Route path='/profile' component={Profile} />
+              <Route path='/logout' component={Logout} />
+              {data && (
+                <EditDataContext.Provider value={{ edit, setEdit }}>
+                  <>
+                    <Route path='/charts' component={Charts} />
+                    <Route path='/transactions' component={Transactions} />
+                    <Redirect from='/' exact to='/charts' />
+                  </>
+                </EditDataContext.Provider>
+              )}
+            </Switch>
+          </main>
         </UserContext.Provider>
       </DataContext.Provider>
     </div>
