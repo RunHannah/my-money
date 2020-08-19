@@ -51,7 +51,7 @@ function OverviewBar() {
   return (
     <div className='summaryBar'>
       <span className='ovItem'>
-        <span className='overviewTitle'>Total Spending</span>
+        <span className='overviewTitle'>Total Year Spending</span>
         <p className='ovNumber'>${total}</p>
       </span>
       <span className='ovItem'>

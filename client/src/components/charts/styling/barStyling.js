@@ -2,7 +2,7 @@ const barStyling = {
   mobileYear: {
     responsive: true,
     title: {
-      text: '$ Total Spending for Year',
+      text: '$ Total Spending by Month',
       display: true,
       fontSize: 12,
       padding: 12,
@@ -61,7 +61,7 @@ const barStyling = {
   desktopYear: {
     responsive: true,
     title: {
-      text: '$ Total Spending for Year',
+      text: '$ Total Spending by Month',
       display: true,
       fontSize: 15,
       padding: 20,
