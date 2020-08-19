@@ -56,7 +56,7 @@ function Register(props) {
         />
         <label htmlFor='password'>Password</label>
         <input
-          type='text'
+          type='password'
           name='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
