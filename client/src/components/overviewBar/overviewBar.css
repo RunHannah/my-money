@@ -1,5 +1,18 @@
 .overviewTitle {
   font-weight: bold;
+  font-size: 1rem;
+}
+
+.ovItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.ovNumber {
+  font-size: 1.3rem;
 }
 
 .summaryBar {
@@ -11,8 +24,7 @@
 }
 
 .summaryBar > span {
-  background-color: #aef0ff;
-  color: #000;
+  color: #fcc82b;
   border-radius: 5px;
   padding: 5px;
 }
@@ -20,6 +32,14 @@
 @media (min-width: 768px) {
   .summaryBar {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .overviewTitle {
+    font-size: 1.2rem;
+  }
+
+  .ovNumber {
+    font-size: 1.5rem;
   }
 }
 
@@ -31,6 +51,11 @@
   .summaryBar > span {
     width: 14rem;
   }
+
+  .ovItem {
+    align-items: flex-start;
+    text-align: left;
+  }
 }
 
 @media (min-width: 1350px) {
@@ -38,5 +63,10 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5rem;
     margin: 0 auto 1rem;
+  }
+
+  .ovItem {
+    align-items: center;
+    text-align: center;
   }
 }
