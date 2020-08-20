@@ -4,8 +4,15 @@ const User = require('../models/user');
 exports.getTransactions = async (req, res, next) => {
   await Transaction.find({})
     .then((transactions) => {
-      if (transactions.length > 0)
-        return res.status(200).json({ success: true, data: transactions });
+      if (transactions.length > 0) {
+        const transactionsFiltered = transactions.filter(
+          (item) => item.userId === 'everyone'
+        );
+
+        return res
+          .status(200)
+          .json({ success: true, data: transactionsFiltered });
+      }
 
       if (transactions.length === 0)
         return res.status(200).json({
