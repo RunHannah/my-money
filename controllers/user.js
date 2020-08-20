@@ -27,7 +27,7 @@ exports.registerNewUser = async (req, res, next) => {
 
   const savedUser = await user.save();
   res
-    .header('auth-token', token)
+    .header('x-auth-token', token)
     .json({ token, name: savedUser.name, id: savedUser._id });
 };
 
@@ -46,7 +46,7 @@ exports.userLogin = async (req, res, next) => {
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
   res
-    .header('auth-token', token)
+    .header('x-auth-token', token)
     .json({ token, name: user.name, id: user._id });
 };
 

@@ -5,7 +5,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 function setJwt() {
   // configuring default headers for all http requests
   const jwt = user.token;
-  axios.defaults.headers.common['auth-token'] = jwt;
+  axios.defaults.headers.common['x-auth-token'] = jwt;
 }
 
 if (user) {
