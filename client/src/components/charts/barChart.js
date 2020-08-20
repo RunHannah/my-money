@@ -4,52 +4,42 @@ import { Bar } from 'react-chartjs-2';
 import getTotalCategory from '../../utils/getTotalCategory';
 import barStyling from './styling/barStyling';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import moment from 'moment';
 import './barChart.css';
 
 const BarChart = () => {
   const [isMobile, setIsMobile] = useState(false);
-
   const { data } = useContext(DataContext);
   const [barMonthData, setBarMonthData] = useState({});
   const [barCategoryData, setBarCategoryData] = useState({});
 
   const loadMonthData = useCallback(() => {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-
     let totalMonth = {
-      Jan: 0,
-      Feb: 0,
-      Mar: 0,
-      Apr: 0,
+      January: 0,
+      February: 0,
+      March: 0,
+      April: 0,
       May: 0,
-      Jun: 0,
-      Jul: 0,
-      Aug: 0,
-      Sep: 0,
-      Oct: 0,
-      Nov: 0,
-      Dec: 0,
+      June: 0,
+      July: 0,
+      August: 0,
+      September: 0,
+      October: 0,
+      November: 0,
+      December: 0,
     };
 
     for (const dataObj of data) {
-      let month = months[new Date(dataObj.date).getMonth()];
+      let monthFormatted = moment(
+        dataObj.date,
+        'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
+      ).format('MMMM');
+
       let amount = parseInt(dataObj.amount);
 
-      if (month in totalMonth) {
-        totalMonth[month] += amount;
+      if (monthFormatted in totalMonth) {
+        totalMonth[monthFormatted] += amount;
+        console.log('totalMonth', totalMonth);
       }
     }
 
