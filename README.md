@@ -3,16 +3,15 @@
 #### Deployed here: https://my-money-mern.herokuapp.com/
 
 ```
-A personal finance app to track your yearly spending habits.
-Enter transactions and view charts by month and category.
+A personal finance app to visualize spending habits. Enter transactions manually or upload a CSV file to view charts by month and category. Includes JSON Web Tokens for user authentication.
 ```
 
 <p align="center">
-    <img src="readMeImages/barCharts.png" width="50%"/>
+    <img src="readMeImages/charts.png" width="50%"/>
 </p>
 <br>
 <p align="center">
-    <img src="readMeImages/pieCharts.png" width="50%"/>
+    <img src="readMeImages/form.png" width="50%"/>
 </p>
 
 #### Technologies Used
@@ -21,6 +20,7 @@ Enter transactions and view charts by month and category.
 Application: React, Node.js, Express, JavaScript, HTML, CSS
 Database: MongoDB
 Charting: Chart.js
+Authentication: JSON web tokens
 ```
 
 #### Install
