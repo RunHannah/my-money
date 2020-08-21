@@ -3,7 +3,9 @@
 #### Deployed here: https://my-money-mern.herokuapp.com/
 
 ```
-A personal finance app to visualize spending habits. Enter transactions manually or upload a CSV file to view charts by month and category. Includes JSON Web Tokens for user authentication.
+A personal finance app to visualize spending habits.
+Enter transactions manually or upload a CSV file to view charts by month and category.
+Includes JSON Web Tokens for user authentication.
 ```
 
 <p align="center">
