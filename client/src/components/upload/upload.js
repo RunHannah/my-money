@@ -93,6 +93,10 @@ function Upload() {
       }); // end of keys loop
 
       setErrorsList([...new Set(errors)]);
+      if (errors.length > 0) {
+        setCsvData([]);
+      }
+
       if (
         record.amount &&
         record.date &&
