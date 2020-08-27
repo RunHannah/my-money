@@ -39,7 +39,6 @@ const BarChart = () => {
 
       if (monthFormatted in totalMonth) {
         totalMonth[monthFormatted] += amount;
-        console.log('totalMonth', totalMonth);
       }
     }
 

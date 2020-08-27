@@ -24,7 +24,6 @@ const connectDB = async () => {
   const db = mongoose.connection;
 
   db.once('open', async (_) => {
-    console.log('Database connected:', db.name);
     const eraseDatabaseOnSync = true;
     if (eraseDatabaseOnSync) {
       await Promise.all([Transaction.deleteMany({})]);
