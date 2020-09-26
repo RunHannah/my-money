@@ -31,18 +31,18 @@ function OverviewPie() {
 
   return (
     <div className='summaryPie'>
-      <span className='ovItem'>
+      <div className='ovItemPie'>
         <span className='overviewTitle'>Lowest % Spending</span>
         <p className='ovNumber'>
           {minMax.minCat} {minMax.minPercent}%
         </p>
-      </span>
-      <span className='ovItem'>
+      </div>
+      <div className='ovItemPie'>
         <span className='overviewTitle'>Top % Spending</span>
         <p className='ovNumber'>
           {minMax.maxCat} {minMax.maxPercent}%
         </p>
-      </span>
+      </div>
     </div>
   );
 }

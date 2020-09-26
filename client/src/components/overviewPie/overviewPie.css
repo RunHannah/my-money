@@ -3,16 +3,19 @@
   font-size: 1rem;
 }
 
-.ovItem {
+.ovItemPie {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  margin-bottom: 1rem;
+  height: 3rem;
 }
 
 .ovNumber {
-  font-size: 1.3rem;
+  font-size: 1rem;
+  margin: 0 auto;
 }
 
 .summaryPie {
@@ -23,13 +26,17 @@
   height: 100%;
 }
 
-.summaryPie > span {
+.ovItemPie {
   color: #fcc82b;
   border-radius: 5px;
   padding: 5px;
 }
 
 @media (min-width: 768px) {
+  .ovItemPie {
+    height: 5rem;
+  }
+
   .overviewTitle {
     font-size: 1.2rem;
   }
@@ -44,13 +51,8 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .summaryPie > span {
+  .ovItemPie {
     width: 14rem;
-  }
-
-  .ovItem {
-    align-items: flex-start;
-    text-align: left;
   }
 }
 
@@ -59,10 +61,5 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5rem;
     margin: 0 auto 1rem;
-  }
-
-  .ovItem {
-    align-items: center;
-    text-align: center;
   }
 }

@@ -50,20 +50,20 @@ function OverviewBar() {
 
   return (
     <div className='summaryBar'>
-      <span className='ovItem'>
+      <div className='ovItem'>
         <span className='overviewTitle'>Total Year Spending</span>
         <p className='ovNumber'>${total}</p>
-      </span>
-      <span className='ovItem'>
+      </div>
+      <div className='ovItem'>
         <span className='overviewTitle'>Average Monthly Spending</span>
         <p className='ovNumber'>${avg}</p>
-      </span>
-      <span className='ovItem'>
+      </div>
+      <div className='ovItem'>
         <span className='overviewTitle'>Highest Spending Category</span>
         <p className='ovNumber'>
           {maxCategory.category} ${maxCategory.amount}
         </p>
-      </span>
+      </div>
     </div>
   );
 }
