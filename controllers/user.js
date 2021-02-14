@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Transaction = require('../models/transaction');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { registerValidation, loginValidation } = require('../validations');
@@ -42,9 +43,11 @@ exports.userLogin = async (req, res, next) => {
 };
 
 exports.deleteUser = async (req, res, next) => {
-  await User.remove({ _id: req.user.userId })
-    .then((result) => {
-      res.status(200).json({ message: 'User deleted' });
-    })
-    .catch(next);
+  try {
+    await Transaction.deleteMany({ userId: req.user.id });
+    await User.findByIdAndDelete(req.user.id);s
+    res.status(200).json({ message: 'Your account and transactions have been deleted' })
+  } catch(e) {
+    res.status(500).send({ error: 'There has been is an error' })
+  }
 };
