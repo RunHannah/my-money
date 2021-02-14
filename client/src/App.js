@@ -6,8 +6,7 @@ import { EditDataContext } from './contexts/editDataContext';
 import Charts from './components/charts/charts';
 import NavBar from './components/navbar/navbar';
 import Form from './components/form/form';
-import Profile from './components/profile';
-import Logout from './components/logout';
+import Profile from './components/profile/profile';
 import Transactions from './components/transactions/transactions';
 import transact from './services/transactService';
 import auth from './services/authService';
@@ -56,7 +55,6 @@ function App() {
               <Route path='/login' component={Form} />
               <Route path='/register' component={Form} />
               <Route path='/profile' component={Profile} />
-              <Route path='/logout' component={Logout} />
               {data && (
                 <EditDataContext.Provider value={{ edit, setEdit }}>
                   <>
