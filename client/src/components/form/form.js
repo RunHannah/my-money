@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { DataContext } from '../../contexts/dataContext';
 import reg from '../../services/regService';
 import auth from '../../services/authService';
@@ -9,11 +9,14 @@ function Form (props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [path, _ ] = useState(props.location.pathname);
-    const formName = path === '/register' ? 'Register' : 'Login';
+    const [formName, setFormName] = useState('');
+
+    useEffect(() => {
+      props.location.pathname === '/register' ? setFormName('Register') : setFormName('Login');
+    }, [props.location.pathname])
 
     const clearFields = (props) => {
-        if (path === '/register') setName('');
+        if (formName === 'Register') setName('');
         setEmail('');
         setPassword('');
     };
@@ -21,11 +24,11 @@ function Form (props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        if (path === '/register') {
+        if (formName === 'Register') {
             const registeredUser = await reg.register(name, email, password);
             auth.loginWithJwt(registeredUser.data);
         }
-        if (path === '/login') {
+        if (formName === 'Login') {
             await auth.login(email, password);
         }
 
@@ -40,7 +43,7 @@ function Form (props) {
   };
 
   const nameInput = () => {
-      if (path === '/register') {
+      if (formName === 'Register') {
         return (
             <>
                 <label htmlFor='name'>Name</label>
@@ -78,7 +81,7 @@ function Form (props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          placeholder={path === '/register' ? "Minimum 6 characters, letters & numbers" : "Please provide your password"}
+          placeholder={formName === 'Register' ? "Minimum 6 characters, letters & numbers" : "Please provide your password"}
         />
         <button>{formName}</button>
       </form>

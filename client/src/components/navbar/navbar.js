@@ -35,7 +35,6 @@ const NavBar = () => {
       }
       // Bind the event listener
       document.addEventListener('mousedown', handleClickOutside);
-
       return () => {
         // Unbind the event listener on clean up
         document.removeEventListener('mousedown', handleClickOutside);
@@ -47,9 +46,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleResize = debounce(() => setWidth(window.innerWidth), 100);
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
