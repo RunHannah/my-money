@@ -22,8 +22,7 @@ const LoginForm = (props) => {
       props.history.push('/charts');
       window.location.reload();
     } catch (error) {
-      // need to update
-      alert('User email not found');
+      alert(error.response.data.error);
       clearFields();
     }
   };

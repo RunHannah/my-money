@@ -5,26 +5,20 @@ const { registerValidation, loginValidation } = require('../validations');
 
 exports.registerNewUser = async (req, res, next) => {
   const { error } = registerValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+  if (error) return res.status(400).json({ error: error.details.map(x => x.message).join(', ') });
   // check duplicate email
   const checkDupEmail = await User.findOne({ email: req.body.email });
-  if (checkDupEmail)
-    return res.status(400).send('This email has already been registered.');
-
+  if (checkDupEmail) return res.status(400).json({ error: 'This email has already been registered.' });
   // hash pw
   const salt = await bcrypt.genSalt(10);
   const hashedPw = await bcrypt.hash(req.body.password, salt);
-
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: hashedPw,
   });
-
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
-
   const savedUser = await user.save();
   res
     .header('x-auth-token', token)
@@ -33,16 +27,13 @@ exports.registerNewUser = async (req, res, next) => {
 
 exports.userLogin = async (req, res, next) => {
   const { error } = loginValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+  if (error) return res.status(422).json({ error: error.details.map(x => x.message).join(', ') });
   // check email exists
   const user = await User.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send('Invalid email.');
-
+  if (!user) return res.status(422).json({ error: 'Email not found.' });
   // check pw
   const validPw = await bcrypt.compare(req.body.password, user.password);
-  if (!validPw) return res.status(400).send('Invalid login credentials');
-
+  if (!validPw) return res.status(422).json({ error: 'Invalid password. Please try again' });
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
   res

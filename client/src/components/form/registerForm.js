@@ -27,9 +27,7 @@ function Register(props) {
       props.history.push('/');
       window.location.reload();
     } catch (error) {
-      // need to update
-      console.log('error', error);
-      alert('Registration error');
+      alert(error.response.data.error);
       clearFields();
     }
   };
