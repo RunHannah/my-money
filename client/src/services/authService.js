@@ -13,8 +13,9 @@ export async function loginWithJwt(registeredUser) {
   localStorage.setItem('user', JSON.stringify(registeredUser));
 }
 
-export function logout() {
+export async function logout(user) {
   localStorage.removeItem('user');
+  const response = await axios.post('/api/user/logout', user)
 }
 
 export function getCurrentUser() {

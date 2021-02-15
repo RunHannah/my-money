@@ -30,6 +30,12 @@ const UserSchema = new Schema({
       ref: 'Transaction',
     },
   ],
+  tokens: [{
+    token: {
+      type: String,
+      required: true
+    }
+  }]
 });
 
 mongoose.models = {};

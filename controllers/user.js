@@ -20,10 +20,11 @@ exports.registerNewUser = async (req, res, next) => {
   });
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
+  user.tokens = user.tokens.concat({ token })
   const savedUser = await user.save();
   res
     .header('x-auth-token', token)
-    .json({ token, name: savedUser.name, id: savedUser._id });
+    .json({ name: savedUser.name, id: savedUser._id, user: savedUser });
 };
 
 exports.userLogin = async (req, res, next) => {
@@ -37,17 +38,32 @@ exports.userLogin = async (req, res, next) => {
   if (!validPw) return res.status(422).json({ error: 'Invalid password. Please try again' });
   // create token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
+  user.tokens = user.tokens.concat({ token })
+  await user.save();
+
   res
     .header('x-auth-token', token)
-    .json({ token, name: user.name, id: user._id });
+    .json({ token, name: user.name, id: user._id, savedUser: user });
 };
 
 exports.deleteUser = async (req, res, next) => {
   try {
     await Transaction.deleteMany({ userId: req.user.id });
-    await User.findByIdAndDelete(req.user.id);s
+    await User.findByIdAndDelete(req.user.id);
     res.status(200).json({ message: 'Your account and transactions have been deleted' })
   } catch(e) {
     res.status(500).send({ error: 'There has been is an error' })
   }
 };
+
+exports.logoutUser = async (req, res, next) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.token
+    })
+    await req.user.save();
+    res.status(200).send({ status: 'You are logged out. '})
+  } catch(e) {
+    res.status(500).send();
+  }
+}

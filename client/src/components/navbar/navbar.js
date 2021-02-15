@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
 import Logo from '../../assets/images/logo.png';
+import auth from '../../services/authService';
 import './navbar.css';
 
 function debounce(fn, ms) {
@@ -23,8 +24,15 @@ const NavBar = () => {
 
   const openNav = () => setNavStatus('open');
   const closeNav = () => setNavStatus('closed');
-
   const wrapperRef = useRef(null);
+
+  async function logOut() {
+    closeNav();
+    await auth.logout(user);
+    // props.history.push('/');
+    // window.location.reload();
+    window.location.href = '/';
+  }
 
   function useClickedOutside(ref) {
     useEffect(() => {
@@ -106,7 +114,7 @@ const NavBar = () => {
               <NavLink className='navProfile' to='/profile' onClick={closeNav}>
                 {user.name}
               </NavLink>
-              <NavLink className='navLogout' to='/logout' onClick={closeNav}>
+              <NavLink className='navLogout' to='/logout' onClick={logOut}>
                 Logout
               </NavLink>
             </React.Fragment>
